@@ -28,3 +28,7 @@ It covers basic tools and concepts used in economics research, with a focus on r
 - [Data validation](https://raw.githack.com/DevInnovationLab/trainings-public/main/rp-workshop/data-validation.html)
 - [Data construction](https://raw.githack.com/DevInnovationLab/trainings-public/main/rp-workshop/data-construction.html)
 - [Data analysis](https://raw.githack.com/DevInnovationLab/trainings-public/main/rp-workshop/data-analysis.html)
+
+---
+
+HTML presentations were created using [reveal.js](https://github.com/hakimel/reveal.js/)
