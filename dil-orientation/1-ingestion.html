@@ -1,0 +1,521 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Data ingestion</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/dil.css">
+
+        <script src="plugin/notes/notes.js"></script>
+        <script>
+            Reveal.initialize({
+                plugins: [ RevealNotes ]
+            });
+        </script>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<textarea data-template>
+						
+						<div id="left">
+							<img src="img/DIL_logo_safespace_RGBFull Color.svg" alt="DIL logo" width="400">
+						</div>
+												
+						# Data ingestion, cleaning, and validation
+
+					</textarea>
+				</section>
+
+        <section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+            ## Motivation
+
+            This session will discuss practices that will help you put the following 
+            [principles for working with data](https://devinnovationlab.github.io/guides/principles/data.html) into practice:
+
+            - Touch whatever you want...
+            - ... and please don't move anything
+            - Be mindful of senstitive data
+            - Create good data sets
+
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Data ingestion
+          </textarea>
+        </section>
+
+				<section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+            ## What is the first thing you notice when you receive new data?
+
+            <div class="fragment fade-in">
+              <ul>
+                <li>File format</li>
+                <li>Size</li>
+                <li>Sensitivity</li>
+              </ul>
+            </div>
+            
+            ---
+            
+            ## What is the first thing you do when you receive new data?
+
+            <div class="fragment fade-in">
+              <ul>
+                <li>Decide where to store it</li>
+                <li>Save a protected copy</li>
+                <li>Open the data</li>
+              </ul>
+            </div>
+            
+            ---
+            
+            ## Where to store data
+
+            - According to UChicago guidelines, data should be stored in Box
+            - Box has a *lock* feature, that prevents files from being modified or deleted
+            - This feature should be used for any data that you cannot recreate
+            - Keep this original data in locked storage in the same file format and with the same content as you received
+            - You can save any necessary changes as new files
+
+            <p class="highlight fragment fade-in">
+              Ideally, decisions on folder structure and data storage plaftorms have already been made and documented ahead of time.
+              <div class="highlight fragment fade-in">
+                If that was not the case, take a moment to really think about it before you place data data somewhere you'll never find it again
+              </div>
+            </p>
+           
+            ---
+            
+            ## Where to store data
+
+            - Large data sets may need special storage
+            - We will talk more about options for big data when discussing cluster access
+
+            ---
+
+            ## Importing data
+
+            - We often receive data in formats that are not easy to open in statistical software
+            - The **second** thing you should to do if that applies to your data is to save it in a format that is appropriate for your software
+              - `.rds` for R
+              - `.dta` for Stata
+            - This will allow you to open the data faster and to preserve variable formats such as dates, factors and labels
+            - If your data contains dates or text, be mindful of how this information is encoded
+
+            ---
+
+            ## Useful tools to save data
+
+            - In R: 
+              - `write_rds` + `read_rds` (from `readr`, for `.rds` files)
+              - `save` + `load` (for `.Rda` files)
+            - In Stata:
+              - `save` + `use`
+              - `compress`
+              - `saveold`
+              - `iesave` (from `ietoolkit`)
+
+            ---
+
+            ## Working with sensitive data
+
+            - If you received sensitive data, but it is not strictly necessary for analysis, save sensitive data fields separately from non-sensitive ones after importing it into R or Stata
+            - Sensitive data requires specific workflows that may take more time to implement
+            - Make sure you have a way to reconnect sensitive and non-sensistive fields if needed
+
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Data cleaning
+
+            Note:
+
+            - Cleaning data is a key step in creating a good data set
+            - The purpose of data cleaning is to preserve the information contained in a data set, while making it easier to handle in statistical software
+          </textarea>          
+        </section>
+        
+        <section data-markdown data-separator-notes="^Note:">
+          <textarea data-template>
+
+            ## What is the first thing you look for when you open a new data set?
+
+            <div class="fragment fade-in">
+              <ul>
+                <li>Unit(s) of observation</li>
+                <li>Variables included</li>
+                <li>Type of data contained in each variable (continuous, categorical, binary, date)</li>
+              </ul>
+            </div>
+            
+            ---
+
+            ## What is the first thing you look for when you start cleaning a data set?
+
+              <ul>
+                <li>Unit(s) of observation<span class="fragment fade-in">: does this data set have a <em>key</em>?</span></li>
+                <li>Variables included<span class="fragment fade-in">: do you understand what they mean?</span></li>
+                <li>Type of data contained in each variable (continuous, categorical, binary, date)
+                  <span class="fragment fade-in">: in what <em>format</em> is the data stored (string, numeric, date, factor, logical)? 
+                    Is this the most efficient way to to store this type of variable?</li>
+              </ul>
+
+            ---
+
+            ## Data format
+
+            Statistical software usually have a preferred way of handling different types of data
+            - In R:
+              - Categorical variables are stored as factors
+              - Binary variables are stored as booleans
+              - Text variables are stored as characters
+              - Numeric variables as stored as integers or numerics
+
+            ---
+
+            ## Data format
+
+            Statistical software usually have a preferred way of handling different types of data
+            - In Stata:
+              - Categorical variables are stored as labeled integers
+              - Binary variables are stored as 0/1 integers
+              - Text variables are stored as strings
+              - Numeric variables are stored as bytes, ints, longs, floats, or doubles
+
+            ---
+
+            ## Data format
+
+            There are many advantages to using data in the software-specific format for each data type:
+            - Using type-specific functions (for example for dates, text, and factors)
+            - Pre-defined ways to represent information in graphs
+            - Pre-defined ways to handle information in tables and regressions
+            - Optmized data storage
+
+            ---
+
+            ## Data format
+            
+            Useful tool to identify data formats
+
+            - In Stata:
+              - `codebook`
+            - In R:
+              - `skim` (from `skimr`)
+              - `makeDataReport` (from `dataReporter`)
+
+            ---
+
+            ## Categorical variables
+
+            Useful tools to change the format of categorical variables
+
+            - In R:
+              - `factor`: encode a variable, define category labels, order factors
+              - `as_factor`: change variable type from numeric or string to factor
+              - `forcats` is a package to handle multiple categorical variable operations
+            - In Stata:
+              - `label value`: add category labels to numeric variables
+              - `encode`: turn string variables into labeled integers
+              - `iecodebook` (from `ietoolkit`): bulk recode and label variables
+
+          </textarea>          
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Data validation
+          </textarea>          
+        </section>
+        
+        <section data-markdown data-separator-notes="^Note:">
+          <textarea data-template>
+            ## Data validation
+
+            - Once we have a data set that can be easily handled in statistical software, it's time to start touching it
+            - The objective of data validation is to ensure the quality of the data and to document patterns that may bias our analysis
+            - At the end of this process, we should have a data set that is very similar to the clean data set, but that may contain some corrections
+            - Data validation should also be documented by recording any issues found in the data -- this will be discussed in more detail during the data documentation session
+          </textarea>          
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:">
+          <textarea data-template>
+            ## No data is safe from quality issues
+
+            Note: 
+            - raise your hand if you ever found something in your data that simply did not make sense
+            - raise your hand if you are in the habit of testing the quality of the data before analyzing it
+            - raise your hand if your data processing code automatically flags issues in the data
+
+            ---
+
+            ## Common issues to look for
+
+            - Data set keys
+            - Completeness
+            - Consistency
+            - Extreme values
+
+            ---
+
+            ## Exploring new data
+
+            - What is the **unit of observation** in this data table?
+            - What column in the data **identifies** a unit in this data table?
+
+            ---
+
+            ## Data set key (ID variable)
+
+            <ol>
+                <li>Uniquely identifies observations</li>
+                <li>Fully identifies observations</li>
+                <div class="fragment fade-in">
+                    <li>Anonymous</li>
+                    <li>Constant across a project</li>
+                </div>
+            </ol>
+
+            ---
+
+            ## Useful tools
+
+            - Stata:
+              - `isid`
+              - `ieduplicates` (from `iefieldkit`)
+              - `duplicates`
+            - R:
+              - `unique`
+              - `nrow` 
+              - `n_distinct` (from `dplyr`)
+              - `get_dupes` (from `janitor`)
+              - `isKey` (from `dataReporter`)
+
+            ---
+
+            ## Completeness
+            
+            - Missing values are common source of issues when handling data
+            - When inspecting new data, check that the data is complete
+              - Across time
+              - Across space or groups
+              - Across units of observation
+            
+            Note:
+            - Skip patterns should normally be predictable. For example, you're only asked how many hours a week you work if you are employed
+            - Do all the observations in one region show missing values for a particular variable? 
+            - Is a particular enumerator skipping entire survey sections?
+            - Was some information only collected after a certain date?
+            
+            ---
+
+            # Useful tools
+
+            - Stata: 
+              - `missing()` 
+              - `misstable`
+            - R: 
+              - [`naniar`](https://naniar.njtierney.com/)
+              - `is.na`
+              - `remove_empty` (from `janitor`)
+
+            ---
+
+            ## Consistency
+
+            Values in a data set should be consistent
+            1. For any given variable across observations
+            1. Across variables for any given observation
+            1. For related information across data tables
+            1. With pre-existing information and common sense 
+
+            <p class="highlight fragment fade-in">
+                This is the most subjective issue in the list, and requires knowledge of the data and of the subject matter
+            </p>
+
+            Note:
+            Ask for examples for each case:
+            1. Yes/No and Y/N used for the same variable
+            1. Pregnant males
+            1. Mother says she has no children on mother data table, but is listed as a mother in the children table
+            1. Being 150 years-old is not reasonable, if we know there are only 10 states in a country, we should not have data for 8 different states
+
+            ---
+
+            # Useful tools
+
+            - Stata: [`ipacheck`](https://github.com/PovertyAction/high-frequency-checks)
+            - R:
+              - [`validate`](https://data-cleaning.github.io/validate/)
+              - [`pointblank`](https://rich-iannone.github.io/pointblank/)
+
+            ---
+
+            ## Extreme values
+                      
+            - Identifying outliers can help us find incorrect values in our data
+            - However, extreme values are not always mistakes
+            - Still, even correctly measured outliers can affect our analysis
+            - For example, by leading to results that are driven by only a few units in our sample
+            
+            <p class="highlight fragment fade-in">
+                So how should we handle them?
+            </p>
+
+            Note:
+            I'm sorry to say I don't have an answer
+            
+            ---
+
+            ## Food for thought
+            
+            <ul>
+                <li>There is no exact rule for what is an outlier</li>
+                <li class="fragment fade-in">Separating outliers from mistakes often comes down to common sense</li>
+                <ul class="fragment fade-in">
+                    <li>Can this valued be explained by a typo?</li>
+                    <li>Is there more information in the data we can use to confirm whether it's an error?</li>
+                </ul>
+            </ul>
+            
+            <p class="highlight fragment fade-in">
+                During data validation, finding and flagging this cases is more important than having a plan for how to deal with them
+            </p>
+
+            ---
+
+            ## When to validate data
+
+            <div class="highlight fragment fade-in">
+                As soon as you get your hands on a new data set!
+            </div>
+
+            <p>
+                <ul class="fragment fade-in">
+                    <li>If you are collecting primary data, do it often, ideally every day. Specially on the first few days of data collection.</li>
+                    <li>If you are receiving the data from a partner, do it after each data transfer</li>
+                </ul>
+            </p>
+
+            Note:
+            Discuss why we want to validate data in real time
+
+            ---
+
+            ## Making corrections
+
+            Whether to make changes to values or not is a controversial point. 
+            <span class="fragment fade-in">But here are a few points where there is not as much controversy:</span>
+
+            <div>
+                <ul>
+                  <li class="fragment fade-in">If you do make corrections, make them through code and carefully document the process or reasoning that led you to find the corrected value.</li>
+                  <li class="fragment fade-in">You should check how sensitive your results are to data quality issues. This can be done by simulating noise or by testing what happens when you disregard observations with suspicious values.</li>  
+                </ul>
+            </div>           
+
+            ---
+
+            ## Useful tools
+
+            - Stata: `iecorrect` (from `iefieldkit`)
+
+          </textarea>          
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Data documentation
+          </textarea>          
+        </section>
+        
+        <section data-markdown data-separator-notes="^Note:">
+          <textarea data-template>
+            ## Data documentation
+
+            <ul>
+              <li class="fragment fade-in">Good data sets are accompanied by good <b>metadata</b> (data that provides information about other data)</li>
+              <li class="fragment fade-in">When ingesting, cleaning, and validating our data, we will uncover important information that should be documented</li>
+              <li class="fragment fade-in">Like tidying data, creating data documentation is not something that is intuitive or that we are typically trained to do, so it will also have it's own session</li>
+              <li class="fragment fade-in">For the purpose of this session, you only need to know that everything you find out about your data that will be important for analysis 
+                should be carefully written down to that everyone else working in the project (including yourself in the future) also knows about it</li>
+            </ul>
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Recap
+          </textarea>
+        </section>
+
+				<section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+            ## Touch whatever you want
+
+            ---
+
+            ## Please don't move anything
+
+            ---
+
+            ## Be mindful of sensitive data
+
+            ---
+
+            ## Create good data sets
+          </textarea>
+        </section>   
+
+        <section data-markdown>
+          <textarea data-template>
+              ## References
+
+              - [How can we improve the quality of big data for development economics research? Experiences from traditional data collection can help!](https://blogs.worldbank.org/opendata/how-can-we-improve-quality-big-data-development-economics-research-experiences-traditional)
+              - [Handling data securely](https://worldbank.github.io/dime-data-handbook/acquisition.html#handling-data-securely)
+              - [Implementing data quality checks](https://worldbank.github.io/dime-data-handbook/processing.html#implementing-data-quality-checks)
+              - [Processing confidential data](https://worldbank.github.io/dime-data-handbook/processing.html#processing-confidential-data)
+              - [Preparing data for analysis](https://worldbank.github.io/dime-data-handbook/processing.html#preparing-data-for-analysis)              
+          </textarea>
+        </section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
