@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Tidying data</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/dil.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<textarea data-template>
+						
+						<div id="left">
+							<img src="img/DIL_logo_safespace_RGBFull Color.svg" alt="DIL logo" width="400">
+						</div>
+												
+						# Documenting Data Work
+						February 10, 2023
+
+					</textarea>
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+                        ## What is the first thing you look for when you open a new data set?
+
+                        - Unit(s) of observation
+                        - Variables included
+                        - Type of information included (text, numbers, dates)
+            
+                        <p class="highlight fragment fade-in">
+                          Please share data documentation with data files!
+                        </p>
+            
+                        Note:
+                        Raise your hand if you ever received data with cryptic variable names and struggled to find out what they meant
+
+                        ## Data documentation
+
+                        **Data dictionary:** a list of the variables in the data, their definitions, types, codes, and additional metadata
+
+                        - In Stata: `iecodebook` (from `iefieldkit`)
+                        - In R: `dataMeta` and `datadictionary` packages
+
+                        ---
+
+                        ## Data documentation
+
+                        **Codebook** a summary of the contents of the data, such as share of missing values, number of unique values, and distribution
+
+                        - In Stata: 
+                        - `codebook`
+                        - `iesave` (from `ietoolkit`)
+                        - In R: 
+                        - `skimr`
+
+                        ---
+
+                        ## Tracking changes to data
+
+                        - As discussed earlier today, we are not allows to store data in github
+                        - However, storing codebooks is an efficient way to track changes to the data
+                        - It can also be a secure way to do so, as long as no sensitive data (e.g. examples of text values or gps coordinates) are included
+
+                        ---
+
+                        ## Tracking changes to data
+
+                        - In Stata, `iesave` has an option called `report` that saves a markdown document with the codebook from a data set
+                        - In R, you can export the output of `skim` to a csv file
+
+					</textarea>
+				</section>
+
+                <section data-background="#faa319">
+                    <h2>
+                        <span class="white">
+                            Questions?
+                        </span>
+                    </h2>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
+
