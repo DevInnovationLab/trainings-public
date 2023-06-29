@@ -200,13 +200,13 @@
                     <textarea data-template>
                         ## Why use tidy data?
 
-                        <div class = "fragment fade-in">
+                        <div>
                             <ul>
-                                <li>Easier to change the format of a single column instead of multiple columns (in wide format)</li>
-                                <li>Easier to handle data if all rows in each column have the same data type (in long format, that is oftern not the case)</li>
-                                <li>Easier to calculate statistics when the unit of observation and unit of analysis are the same</li>
-                                <li>Easier to create visualizations when each value into the data will be one data point in the graph</li>
-                                <li>Easier to aggregate observations having tidy data as a starting point</li>
+                                <li class = "fragment fade-in">Easier to change the format of a single column instead of multiple columns (in wide format)</li>
+                                <li class = "fragment fade-in">Easier to handle data if all rows in each column have the same data type (in long format, that is oftern not the case)</li>
+                                <li class = "fragment fade-in">Easier to calculate statistics when the unit of observation and unit of analysis are the same</li>
+                                <li class = "fragment fade-in">Easier to create visualizations when each value into the data will be one data point in the graph</li>
+                                <li class = "fragment fade-in">Easier to aggregate observations having tidy data as a starting point</li>
                             <ul>
                         </div>
                         
@@ -279,16 +279,20 @@
                         </ol>   
 
                         ---
-
                         ## Reshaping
 
-                        - In R: `pivot_longer` + `pivot_wider`
-                        - In Stata: `reshape`
-                        - Always have the help file for these functions open when using them!
-                        - What can go wrong when reshaping?
-                        - Important checks: 
-                            - Drop blank rows
-                            - Check that the number of rows matches the number of individuals in the new unit of observation
+                        <ul>
+                            <li class = "fragment fade-in">In R: <code>pivot_longer</code> + <code>pivot_wider</code></li>
+                            <li class = "fragment fade-in">In Stata: <code>reshape</code></li>
+                            <li class = "fragment fade-in">Always have the help file for these functions open when using them!</li>
+                            <li class = "fragment fade-in">What can go wrong when reshaping?</li>
+                            <li class = "fragment fade-in">Important checks:
+                                <ul>
+                                    <li>Drop blank rows</li>
+                                    <li>Check that the number of rows matches the number of individuals in the new unit of observation</li>
+                                </ul>
+                            </li>
+                        <ul>
                         ---
 
                         ## Tidying data
@@ -310,10 +314,12 @@
 					<textarea data-template>
                         ## Some practical tips
 
-                        - Group variables by module and add them to the same tidy table
-                        - Use prefixes to variable names to identify modules (it will make reshaping a lot easier)
-                        - Name tidy data tables in a way that makes it easy to identify its unit of observation (e.g. `household-demographics`, `child-subject-grade`)
-                        
+                        <ul>
+                            <li class = "fragment fade-in">Group variables by module and add them to the same tidy table</li>
+                            <li class = "fragment fade-in">Use prefixes to variable names to identify modules (it will make reshaping a lot easier)</li>
+                            <li class = "fragment fade-in">Name tidy data tables in a way that makes it easy to identify its unit of observation (e.g. <code>household-demographics</code>, <code>child-subject-grade</code>)</li>
+                        <ul>
+
                         ---
                         ## Some practical tips
                         
