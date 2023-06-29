@@ -198,16 +198,6 @@
     
                 <section data-markdown>
                     <textarea data-template>
-                        ## When to use tidy data?
-
-                        <ul>
-                            <li>As we've discussed, sometimes we can only perform the analysis we are interested in using untidy data</li>
-                            <li class="fragment fade-in">Still, this format is extremely useful for other stages of the data work, including data cleaning and indicator construction</li>
-                            <li class="fragment fade-in">If we are interested in analyzing data in multiple units of observations, 
-                                we'll likely need analysis data sets that are as close to tidy as possible for each of these units</li>
-                        </ul>
-
-                        ---
                         ## Why use tidy data?
 
                         <div class = "fragment fade-in">
@@ -220,6 +210,17 @@
                             <ul>
                         </div>
                         
+                        ---
+
+                        ## When to use tidy data?
+
+                        <ul>
+                            <li>As we've discussed, sometimes we can only perform the analysis we are interested in using untidy data</li>
+                            <li class="fragment fade-in">Still, this format is extremely useful for other stages of the data work, including data cleaning and indicator construction</li>
+                            <li class="fragment fade-in">If we are interested in analyzing data in multiple units of observations, 
+                                we'll likely need analysis data sets that are as close to tidy as possible for each of these units</li>
+                        </ul>
+
                     </textarea>
 				</section>
 
@@ -229,9 +230,24 @@
 
                 <section data-markdown>
 					<textarea data-template>
+
                         ## Tidying data
 
-                        How can we turn `mother_long.csv` into a tidy data set?
+                        How can we turn this into a tidy table?
+
+                        | mother_id	| yob	| name	     | value |
+                        |-----------|-------|------------|-------|
+                        | 0101	    | 1998	| village_id | 01    |
+                        | 0101	    | 1998	| age	     | 24    |
+                        | 0101	    | 1998	| educ	     | 4     |
+                        | 0101	    | 1998	| n_children | 1     |
+                        | 0102	    | 1982	| village_id | 01    |
+                        | 0102	    | 1982	| age	     | 40    |
+                        | 0102	    | 1982	| educ	     | 10    |
+                        | 0102	    | 1982	| n_children | 4     |
+                        
+                        ---
+                        ## Tidying data
 
                         <ul>
                             <li class="fragment fade-in">By reshaping it so that variables are represented in columns, not rows</li>
@@ -241,10 +257,21 @@
                         </ul>                      
 
                         ---
+                        ## Tidying data
+                
+                        How can we turn this into a tidy table?
 
+                        | motherid | age | educ | n_children | age_ch1 | age_ch2 | age_ch3 |
+                        |----------|-----|------|------------|---------|---------|---------|
+                        | 654031   | 25  | 3    | 1          | 5       |         |         |
+                        | 655063   | 35  | 4    | 3          | 15      | 13      | 8       |
+                        | 633058   | 21  | 2    | 2          | 2       | 1       |         |
+                        | 652047   | 40  | 3    | 3          | 12      | 10      | 8       |
+
+                        ---
                         ## Tidying data
 
-                        How can we turn `mother_survey.csv` into a tidy data set?
+                        How can we turn this into a tidy table?
 
                         <ol>
                             <li class="fragment fade-in">Create two separate data tables, one where the unit of observation is the mother, and one where it is the child</li>
@@ -272,14 +299,39 @@
                             <li class="fragment fade-in">Because they allow us to connect different data tables</li>
                         </ul>
 
-                        ---
+                    </textarea>
+				</section>
 
+                <section data-background="#80001E">
+					<h2>Some practical tips</h2>
+				</section>
+
+                <section data-markdown>
+					<textarea data-template>
                         ## Some practical tips
 
-                        - Name tidy data tables in a way that makes it easy to identify its unit of observation
-                        - Keep documentation about the different units of observation in your data and how their respective data tables can be linked
+                        - Group variables by module and add them to the same tidy table
+                        - Use prefixes to variable names to identify modules (it will make reshaping a lot easier)
+                        - Name tidy data tables in a way that makes it easy to identify its unit of observation (e.g. `household-demographics`, `child-subject-grade`)
+                        
+                        ---
+                        ## Some practical tips
+                        
+                        Keep documentation about the different units of observation in your data and how their respective data tables can be linked
 
                         <img src="img/flowchart.png">
+
+                        ---
+                        ## Some practical tips
+                        
+                        Keep documentation about the different units of observation in your data and how their respective data tables can be linked
+
+                        | Table name | Group code | Dofile | Unique ID  | Observations |
+                        |------------|------------|--------|------------|---------|
+                        | `tr-teacher-training.dta`      | tt    | `tt-tr.do` | `tr_id` + `key` | 1681                   |
+                        | `tr-teacher-act-engagement.dta` | ec     | `ec-tr.do` | `tr_id` + `act` + `key` | 5241           |
+                        | `tr-teacher-income-source.dta` | yc     | `ys-tr.do` | `tr_id` + `key` + `ys_id` | 2648         |
+
                     </textarea>
                 </section>
             
