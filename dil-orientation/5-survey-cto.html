@@ -1,0 +1,167 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Data ingestion</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/dil.css">
+
+        <script src="plugin/notes/notes.js"></script>
+        <script>
+            Reveal.initialize({
+                plugins: [ RevealNotes ]
+            });
+        </script>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<textarea data-template>
+						
+						<div id="left">
+							<img src="img/DIL_logo_safespace_RGBFull Color.svg" alt="DIL logo" width="400">
+						</div>
+						<h1>Survey planning</h1> 
+					</textarea>
+				</section>
+
+        <section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+            ## Slide title
+
+            This session will discuss practices that will help you put the following 
+            [hyperlink](https://devinnovationlab.github.io/guides/principles/data.html) into practice:
+
+            - unordered item 1
+            - unordered item 2
+
+            ---
+            
+            ## Slide title
+
+            1. ordered item 1
+            2. ordered item 2
+
+            Note:
+            - Presentor notes go here
+
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Section title
+          </textarea>
+        </section>
+
+				<section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+            ## Animated chunk
+
+            <div class="fragment fade-in">
+              <ul>
+                <li>File format</li>
+                <li>Size</li>
+                <li>Sensitivity</li>
+              </ul>
+            </div>
+            
+            ---
+            
+            ## Animated items
+
+            <div>
+              <ul>
+                <li class="fragment fade-in">Decide where to store it</li>
+                <li class="fragment fade-in">Save a protected copy</li>
+                <li class="fragment fade-in">Open the data</li>
+              </ul>
+            </div>
+            
+            ---
+            
+            ## Animation + highlight
+
+            <p class="highlight fragment fade-in">
+              Ideally, decisions on folder structure and data storage plaftorms have already been made and documented ahead of time.
+              <div class="highlight fragment fade-in">
+                If that was not the case, take a moment to really think about it before you place data data somewhere you'll never find it again
+              </div>
+            </p>
+           
+            ---
+
+            ## Submitems
+
+            - In R: 
+              - `write_rds` + `read_rds` (from `readr`, for `.rds` files)
+              - `save` + `load` (for `.Rda` files)
+            - In Stata:
+              - `save` + `use`
+              - `compress`
+              - `saveold`
+              - `iesave` (from `ietoolkit`)
+
+            ---
+
+            ## Add an image
+
+            <img src="img/DIL_logo_safespace_RGBFull Color.svg" width = 50%>
+
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Data cleaning
+
+            Note:
+
+            - Cleaning data is a key step in creating a good data set
+            - The purpose of data cleaning is to preserve the information contained in a data set, while making it easier to handle in statistical software
+          </textarea>          
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+              ## References
+
+              - [How can we improve the quality of big data for development economics research? Experiences from traditional data collection can help!](https://blogs.worldbank.org/opendata/how-can-we-improve-quality-big-data-development-economics-research-experiences-traditional)
+              - [Handling data securely](https://worldbank.github.io/dime-data-handbook/acquisition.html#handling-data-securely)
+              - [Implementing data quality checks](https://worldbank.github.io/dime-data-handbook/processing.html#implementing-data-quality-checks)
+              - [Processing confidential data](https://worldbank.github.io/dime-data-handbook/processing.html#processing-confidential-data)
+              - [Preparing data for analysis](https://worldbank.github.io/dime-data-handbook/processing.html#preparing-data-for-analysis)              
+          </textarea>
+        </section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
