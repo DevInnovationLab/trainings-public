@@ -31,52 +31,312 @@
 
 				<section data-markdown>
 					<textarea data-template>
-                        ## What is the first thing you look for when you open a new data set?
+						
+						## Motivation
 
-                        - Unit(s) of observation
-                        - Variables included
-                        - Type of information included (text, numbers, dates)
-            
-                        <p class="highlight fragment fade-in">
-                          Please share data documentation with data files!
-                        </p>
-            
-                        Note:
-                        Raise your hand if you ever received data with cryptic variable names and struggled to find out what they meant
+						- How long did it take you to find your way around the data and code for the last project you took over from someone else?
+						- Did you ever work on a piece of analysis or data cleaning only to find out that someone else (or maybe event yourself) had already done the same thing?
+						- If your PI asked you how many different data sets were used in your last project, how long would it take you to answer?
+						- Did you ever took over code that you simply could not run?
 
-                        ## Data documentation
+						---
 
-                        **Data dictionary:** a list of the variables in the data, their definitions, types, codes, and additional metadata
+						## Data principles
 
-                        - In Stata: `iecodebook` (from `iefieldkit`)
-                        - In R: `dataMeta` and `datadictionary` packages
+						- Please don't move anything
+						  - Know where things are
+						- Show, don't (just) tell
+						  - Easily see what the data looks like
+						- Create good data sets
+						  - 
+						
+						---
 
-                        ---
+						## Coding principles
 
-                        ## Data documentation
+						- Code should live forever
+						- Be kind to your reader
+						- Track your changes
+						- Automate your workflow
 
-                        **Codebook** a summary of the contents of the data, such as share of missing values, number of unique values, and distribution
+						---
 
-                        - In Stata: 
-                        - `codebook`
-                        - `iesave` (from `ietoolkit`)
-                        - In R: 
-                        - `skimr`
+						## On/offboarding checklist
 
-                        ---
+						- [ ] Get access to all relevant documents (GitHub repositories, shared folders, Overleaft documents)
+						- [ ] Make sure all the files for the project are stored in a single folder, or create a README file linking to all the different locations where they may sit
+						- [ ] Create a backup of raw data if it doesn't exist yet
+						- [ ] Update project documentation
+							- [ ] List of data sets
+							- [ ] Data dictionaries
+							- [ ] Folder structure
+							- [ ] Notes on important research decisions
+						- [ ] Make sure the project has a main script that
+							- [ ] Maps file paths to relevant directories
+							- [ ] Calls all other scripts
+							- [ ] Indicates the inputs and outputs for each subscript
+							- [ ] Briefly describe what each subscript does
+							- [ ] You are actually able to run
 
-                        ## Tracking changes to data
+					</textarea>
+				</section>
 
-                        - As discussed earlier today, we are not allows to store data in github
-                        - However, storing codebooks is an efficient way to track changes to the data
-                        - It can also be a secure way to do so, as long as no sensitive data (e.g. examples of text values or gps coordinates) are included
+				<section data-background="#80001E">
+					## Project README
+				</section>
 
-                        ---
+				<section data-markdown>
+					<textarea data-template>
 
-                        ## Tracking changes to data
+						## Project README: ongoing projects
 
-                        - In Stata, `iesave` has an option called `report` that saves a markdown document with the codebook from a data set
-                        - In R, you can export the output of `skim` to a csv file
+						- When interacting with the code for the first time, what do you need to do to set up?
+						- What software does the project use?
+						- How can you run the entire code for the project?
+						- Where does the code sit? And the data? And the outputs (tables, figures)? And the documentation?
+						- How are folders structured?
+						- What are all the data sources for the project? Which data tables come from each source?
+
+						example
+
+						---
+
+						## Project README: reproducibility package
+
+						- When interacting with the code for the first time, what do you need to do to set up?
+						- How can you run the entire code for the project?
+						- What software does the project use? Which packages are necessary?
+						- How are folders structured?
+						- What are all the outputs created by the code? Which script (line) creates them? Which data tables are used as input?		
+
+						example
+
+						---
+
+						## Creating and updating a README
+
+						- Start from a template and add as much information as you have available
+							- Markdown template
+							- Word template
+							- LaTeX template
+						- Update it whenever an important task is completed: new data was acquired, new analysis was developed, new round of data processing
+							- Update the README every time you open a pull request
+							- If you don't use GitHub, update it every 3 months
+
+					</textarea>
+				</section>
+				
+				<section data-background="#80001E">
+					## List of data sources 
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+
+						## List of data sources: content
+
+						- What are all the relevant raw data sets for the project?
+						- Where are they stored?
+						- Where are they backed up?
+						- Where did they come from?
+						- What time period do they cover?
+						- What is their unit of observation?
+						- What are variables uniquely identify observations?
+						- What are the main variables they contain?
+						
+						---
+
+						## List of data sources: example
+
+						---
+
+						## Creating and updating a list of data sources
+
+						- Start from a template and add as much information as you have available
+							- Markdown template
+							- Word template
+							- LaTeX template
+						- Update it whenever new data is acquired 
+
+					</textarea>
+				</section>
+
+				<section data-background="#80001E">
+					## Data dictionaries
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+
+						## Data dictionaries: content
+
+						- What is the level of observation for this data set? What variable uniquely identifies it?
+						- How many observations does it include?
+						- What is the source of the data?
+						- Link to additional documentation
+						- What are all the variables in the data set?
+						  - What type of information do they contain (binary, continuous, categorical)
+						  - How are they defined?
+						  - In what unit are they measured?
+
+						---
+
+						## Creating and updating data dictionaries
+
+						In Stata:
+						- Use `iecodebook, export` to export a list with
+							- Variable name
+							- Variable label
+							- Variable type
+							- Value label			
+  
+						---
+  
+						## Creating and updating data dictionaries in Stata
+
+						<pre>
+							<code>
+								sysuse auto, clear
+								iecodebook export using "${codebook}/auto_export.xlsx", replace
+							</code>
+						</pre>
+						
+						<img src="img/iecodebook.PNG">
+
+						---
+
+						## Creating and updating data dictionaries in Stata
+
+						In Stata:
+						- Use `iesave` instead of `save` to save a file with
+							- Variable names
+							- Variable label
+							- Variable type
+							- Descriptive statistics
+						- Save the metadata to GitHub to track changes to the data
+						- Make sure that no confidential information (e.g. examples of text values or gps coordinates)  is included in the metadata stored in GitHub
+
+						---
+
+						## Creating and updating data dictionaries in Stata
+
+						<pre>
+							<code>
+								sysuse auto, clear
+
+								iesave "${box}/data/auto.dta", ///
+									idvars(make) ///
+									version(13.0) ///
+									report(path("${github}/data/auto.md"))
+							</code>
+						</pre>
+  
+						<img src="img/iesave.PNG">
+
+						---
+
+						## Creating and updating data dictionaries
+
+						In R:
+						- `dataMeta`: similar to `iecodebook`, creates a table with variable names and labels
+						- `datadictionary`: similar to `iesave`, adds descriptive statistics and can be used to track changes to the data
+						- `skimr`: similar to `iesave`, adds descriptive statistics and can be used to track changes to the data
+
+					</textarea>
+				</section>
+
+				<section data-background="#80001E">
+					## Documenting research decisions
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+
+						## Documenting research decisions
+
+						- RCT studies take years to complete. During this time, team members will come and go, and discussions will come up over and over again.
+						- It should be easy for anyone in the team to remind themselves of how and why research decisions were made, such as
+							- Why a certain analysis uses a particular sample
+							- Why a regression uses random effects and not fixed effects
+							- Why one indicator definition was preferred over another
+
+
+						---
+
+						## Documenting research decisions
+
+						The best way to do this is whatever works for your team, and is often a combination of
+						- GitHub issues
+						- README files
+						- Comments to code
+						- Asana
+						- Meeting notes on google documents
+						- Slack threads
+						
+						Whatever system you decide to use, make sure everyone in the project is aware of it and make a plan to keep it up to date
+
+						---
+
+						## Creating and updating data dictionaries
+
+						In Stata:
+						- Use `iecodebook, export` to export a list with
+							- Variable name
+							- Variable label
+							- Variable type
+							- Value label			
+  
+						---
+  
+						## Creating and updating data dictionaries in Stata
+
+						<pre>
+							<code>
+								sysuse auto, clear
+								iecodebook export using "${codebook}/auto_export.xlsx", replace
+							</code>
+						</pre>
+						
+						<img src="img/iecodebook.PNG">
+
+						---
+
+						## Creating and updating data dictionaries in Stata
+
+						In Stata:
+						- Use `iesave` instead of `save` to save a file with
+							- Variable names
+							- Variable label
+							- Variable type
+							- Descriptive statistics
+						- Save the metadata to GitHub to track changes to the data
+						- Make sure that no confidential information (e.g. examples of text values or gps coordinates)  is included in the metadata stored in GitHub
+
+						---
+
+						## Creating and updating data dictionaries in Stata
+
+						<pre>
+							<code>
+								sysuse auto, clear
+
+								iesave "${box}/data/auto.dta", ///
+									idvars(make) ///
+									version(13.0) ///
+									report(path("${github}/data/auto.md"))
+							</code>
+						</pre>
+  
+						<img src="img/iesave.PNG">
+
+						---
+
+						## Creating and updating data dictionaries
+
+						In R:
+						- `dataMeta`: similar to `iecodebook`, creates a table with variable names and labels
+						- `datadictionary`: similar to `iesave`, adds descriptive statistics and can be used to track changes to the data
+						- `skimr`: similar to `iesave`, adds descriptive statistics and can be used to track changes to the data
 
 					</textarea>
 				</section>
