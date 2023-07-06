@@ -1,0 +1,10 @@
+.my-items {
+    text-align: left;
+}
+
+.container{
+    display: flex;
+}
+.col{
+    flex: 1;
+}
