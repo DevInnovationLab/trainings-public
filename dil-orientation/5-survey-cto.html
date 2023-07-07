@@ -5,12 +5,19 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Data ingestion</title>
+		<title>SurveyCTO</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/dil.css">
-
+    <style>
+      .container{
+          display: flex;
+      }
+      .col{
+          flex: 1;
+      }
+    </style>
         <script src="plugin/notes/notes.js"></script>
         <script>
             Reveal.initialize({
@@ -30,120 +37,247 @@
 						<div id="left">
 							<img src="img/DIL_logo_safespace_RGBFull Color.svg" alt="DIL logo" width="400">
 						</div>
-						<h1>Survey planning</h1> 
+						<h1>Survey CTO</h1> 
 					</textarea>
 				</section>
 
         <section data-markdown data-separator-notes="^Note:">
 					<textarea data-template>
 
-            ## Slide title
-
-            This session will discuss practices that will help you put the following 
-            [hyperlink](https://devinnovationlab.github.io/guides/principles/data.html) into practice:
-
-            - unordered item 1
-            - unordered item 2
-
-            ---
+            ## Session description
             
-            ## Slide title
-
-            1. ordered item 1
-            2. ordered item 2
-
-            Note:
-            - Presentor notes go here
+            - What is SurveyCTO and why do we use it?
+            - How do you set up a SurveyCTO server?
+            - How do you design a SurveyCTO form?
+            - What are some best practices?
+            - Where can I get help?
 
           </textarea>
         </section>
-
+        
         <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
           <textarea data-template>
-            ## Section title
+            ## What is SurveyCTO and why do we use it?
           </textarea>
         </section>
+        
+        <section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
 
+          <p style="text-align: left;">SurveyCTO is a collection platform based on the ODK open source language. It is widely used to collect data on the field because of its:</p>
+
+            1. <span style="font-weight: bold; color: #FBA320;">Security:</span> you can encrypt your forms
+            2. <span style="font-weight: bold; color: #FBA320;">Reliability:</span> you can collect data without internet on the field using tablets, smartphones or computers
+            3. <span style="font-weight: bold; color: #FBA320;">Support:</span> SurveyCTO has an extended blog and a support team that is available 24/7
+            4. <span style="font-weight: bold; color: #FBA320;">Credibility:</span> large number of institutions work with SurveyCTO
+            5. <span style="font-weight: bold; color: #FBA320;">User-friendliness:</span> the ODK language makes it easy to design a form and monitor your data collection in realtime
+
+          </textarea>
+        </section>
+        
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## How do you set up a SurveyCTO server?
+          </textarea>
+        </section>
+        
 				<section data-markdown data-separator-notes="^Note:">
 					<textarea data-template>
 
-            ## Animated chunk
+            <h2>How do you set up a SurveyCTO server?</h2> 
 
-            <div class="fragment fade-in">
-              <ul>
-                <li>File format</li>
-                <li>Size</li>
-                <li>Sensitivity</li>
-              </ul>
-            </div>
+            <ul>
+              <li class="fragment fade-in">DIL has its own server: <a href="mailto:dilserver@uchicago.edu">dilserver@uchicago.edu</a></li>
+              <li class="fragment fade-in">You will need to access it using your cnet id</li>
+              <li class="fragment fade-in"><a href="mailto:luizaandrade@uchicago.edu">Luiza</a>, <a href="mailto:asaletore@uchicago.edu">Akanksha</a>, or <a href="mailto:srestrepot@uchicago.edu">Sara</a> can help add your team/ project to the DIL server</li>
+            </ul>
             
             ---
             
-            ## Animated items
+            ## [SurveyCTO](https://dilserver.surveycto.com/index.html) login page
 
-            <div>
-              <ul>
-                <li class="fragment fade-in">Decide where to store it</li>
-                <li class="fragment fade-in">Save a protected copy</li>
-                <li class="fragment fade-in">Open the data</li>
-              </ul>
-            </div>
+            <img src="img/01_first_page_scto.png" width = 32%>
             
-            ---
+            </textarea>
+        </section>
+ 
+        
+      <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+        <textarea data-template>
+          ## How do you create a survey in SurveyCTO?
+         </textarea>
+      </section>
+        
+				<section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+            <h2>How do you create a survey in SurveyCTO?</h2> 
+            <img src="img/02_scto_groups_and_forms.png" width = 100%>
             
-            ## Animation + highlight
-
-            <p class="highlight fragment fade-in">
-              Ideally, decisions on folder structure and data storage plaftorms have already been made and documented ahead of time.
-              <div class="highlight fragment fade-in">
-                If that was not the case, take a moment to really think about it before you place data data somewhere you'll never find it again
-              </div>
-            </p>
-           
-            ---
-
-            ## Submitems
-
-            - In R: 
-              - `write_rds` + `read_rds` (from `readr`, for `.rds` files)
-              - `save` + `load` (for `.Rda` files)
-            - In Stata:
-              - `save` + `use`
-              - `compress`
-              - `saveold`
-              - `iesave` (from `ietoolkit`)
-
-            ---
-
-            ## Add an image
-
-            <img src="img/DIL_logo_safespace_RGBFull Color.svg" width = 50%>
-
           </textarea>
         </section>
 
-        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+     
+      <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+        <textarea data-template>
+          ## How do you design a SurveyCTO form?
+         </textarea>
+      </section>
+      
+              <section data-markdown data-separator-notes="^Note:">
           <textarea data-template>
-            ## Data cleaning
 
-            Note:
-
-            - Cleaning data is a key step in creating a good data set
-            - The purpose of data cleaning is to preserve the information contained in a data set, while making it easier to handle in statistical software
-          </textarea>          
-        </section>
-
-        <section data-markdown>
+             <h2>How do you design a SurveyCTO form?</h2> 
+        <div class="fragment fade-in">     
+          <p style="text-align: center;"> Today we will use <a href="https://docs.google.com/spreadsheets/d/1A2kDL6F5ad3RNTEioQWhrZYS-rwJLKwQKDDFc-j3tac/edit#gid=1900307175">this survey form</a> as an example 
+          </div>
+          </p>
+         </textarea>
+      </section>
+  
+<section data-markdown data-separator-notes="^Note:">
           <textarea data-template>
-              ## References
 
-              - [How can we improve the quality of big data for development economics research? Experiences from traditional data collection can help!](https://blogs.worldbank.org/opendata/how-can-we-improve-quality-big-data-development-economics-research-experiences-traditional)
-              - [Handling data securely](https://worldbank.github.io/dime-data-handbook/acquisition.html#handling-data-securely)
-              - [Implementing data quality checks](https://worldbank.github.io/dime-data-handbook/processing.html#implementing-data-quality-checks)
-              - [Processing confidential data](https://worldbank.github.io/dime-data-handbook/processing.html#processing-confidential-data)
-              - [Preparing data for analysis](https://worldbank.github.io/dime-data-handbook/processing.html#preparing-data-for-analysis)              
+             <h2>Form Design - sheets</h2> 
+
+              <li class="fragment fade-in" style="text-align: left;">survey</li>
+              <li class="fragment fade-in" style="text-align: left;">choices</li>
+              <li class="fragment fade-in" style="text-align: left;">settings</li>
+              <li class="fragment fade-in" style="text-align: left;">help-</li>
+         </textarea>
+      </section>
+
+<section data-markdown data-separator-notes="^Note:">
+          <textarea data-template>
+
+             <h2>Form Design - survey sheet</h2> 
+ 
+ <div class="container">
+  <div class="col">
+    <h3><span style="font-weight: bold; color: #FBA320;">Primary columns</span></h3>
+      <li class="fragment fade-in" style="text-align: left;">type</li>
+      <li class="fragment fade-in" style="text-align: left;">name</li>
+      <li class="fragment fade-in" style="text-align: left;">label</li>
+      <li class="fragment fade-in" style="text-align: left;">constraint</li>
+      <li class="fragment fade-in" style="text-align: left;">relevance</li>
+  </div>
+  <div class="col">
+    <h3><span style="font-weight: bold; color: #FBA320;">Secondary columns</span></h3>
+      <li class="fragment fade-in" style="text-align: left;">hint</li>
+      <li class="fragment fade-in" style="text-align: left;">required</li>
+      <li class="fragment fade-in" style="text-align: left;">calculation</li>
+      <li class="fragment fade-in" style="text-align: left;">appearance</li>
+      <li class="fragment fade-in" style="text-align: left;">disabled</li>
+  </div>
+  </div>
+         </textarea>
+      </section>
+
+  <section data-markdown data-separator-notes="^Note:">
+  <textarea data-template>
+  
+  <h2>Form Design - choices sheet</h2> 
+  
+  <ul>
+    <li class="fragment fade-in" style="text-align: left;">list_name</li>
+    <ul>
+      <li class="fragment fade-in" style="text-align: left;">No spaces</li>
+      <li class="fragment fade-in" style="text-align: left;">Same list can be used in multiple questions</li>
+    </ul>  
+    <li class="fragment fade-in" style="text-align: left;">value</li>
+    <ul>
+      <li class="fragment fade-in" style="text-align: left;">Can take text and numbers, but good to use numbers only</li>
+      <li class="fragment fade-in" style="text-align: left;">Standardise "other" and "don't know" options</li>
+    </ul>
+    <li class="fragment fade-in" style="text-align: left;">filter</li>
+    <ul>
+      <li class="fragment fade-in" style="text-align: left;">Can be used to only show certain options, based on previous responses</li>
+    </ul>
+  </ul>
+
+         </textarea>
+      </section>
+        
+          <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## What are some best practices?
           </textarea>
         </section>
+        
+        <section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+             <h2>Best practices when coding your instrument (1/2) </h2>
+              <ul>
+                <li class ="fragment fade-in" style="text-align: left; font-weight: bold; color: #FBA320;">General:</li>
+                <ul>
+                  <li class ="fragment fade-in" style="text-align: left;">Keep the enumeration team in mind while designing</li>
+                  <li class ="fragment fade-in" style="text-align: left;">Visualise the data that the form will generate while designing</li>
+                </ul>
+                <li class ="fragment fade-in" style="text-align: left; font-weight: bold; color: #FBA320;">survey sheet:</li>
+                <ul>
+                  <li class ="fragment fade-in" style="text-align: left;">Use short, descriptive names for variables
+                  <li class ="fragment fade-in" style="text-align: left;">Use a module prefix and some indentation so it is easier to clean</li>
+                  <li class ="fragment fade-in" style="text-align: left;">Reference previous responses for the benefit of enumerators</li>
+                  <li class ="fragment fade-in" style="text-align: left;">Add constraints and relevance conditions as far as possible</li>
+                  <li class ="fragment fade-in" style="text-align: left;">Make use of groups and repeat groups</li>
+                  </ul>
+                  </ul>
+                </div>
+
+          </textarea>
+        </section>
+        
+        <section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+             <h2>Best practices when coding your instrument (2/2) </h2>
+              <ul>        
+                <li class ="fragment fade-in" style="text-align: left; font-weight: bold; color: #FBA320;">choices sheet:</li>
+                  <ul>
+                    <li class ="fragment fade-in" style="text-align: left;">Reuse choice lists across questions instead of creating duplicate lists</li>
+                  </ul>
+                <li class ="fragment fade-in" style="text-align: left; font-weight: bold; color: #FBA320;">settings sheet:</li>
+                <ul>
+                  <li class ="fragment fade-in" style="text-align: left;"><code>form_title</code> and <code>form_id</code> will be what you enter on SurveyCTO when creating the google sheet. Do not change</li>
+                  <li class ="fragment fade-in" style="text-align: left;">Do not manually change <code>version</code></li>
+                  <li class ="fragment fade-in" style="text-align: left;">Always use a <code>public_key</code> so your data is encrypted at the point of collection</li>
+                  <li class ="fragment fade-in" style="text-align: left;">Choose the default language that is comfortable for the enumeration team</li>
+                  <li class ="fragment fade-in" style="text-align: left;">instance_name</code> can be created using survey responses to aid enumerators at the end of the day</li>
+              </ul>
+              </ul>
+            </div>
+
+          </textarea>
+        </section>
+ 
+          <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Where can I find resources?
+          </textarea>
+        </section>
+        
+        <section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+          <p style="text-align: left;">Below you can find some resources we think might be useful when programming your surveys:</p>
+
+            1. <span style="font-weight: bold; color: #FBA320;">[DIME Analytics SurveyCTO Style Guide](https://docs.google.com/document/d/1yVFdWugHV37vRaXmt-FnW80r015JVESR0bIHloFq378/edit#heading=h.ifwt68s1w4n)</span> 
+            2. <span style="font-weight: bold; color: #FBA320;">[ODK docs](https://docs.getodk.org/)</span>
+            3. <span style="font-weight: bold; color: #FBA320;">[SurveyCTO support center](https://support.surveycto.com/hc/en-us)</span>: If you can't find the answer on their blog, send them your questions. They usually reply within 2 to 4 hours.
+            4. <span style="font-weight: bold; color: #FBA320;">[DIME's Introduction to SurveyCTO](https://osf.io/8e7bj) </span>
+            5. <span style="font-weight: bold; color: #FBA320;">[DIME's Advanced SurveyCTO Programming](https://osf.io/2nepd)</span>
+            6. Ask around the office! :)
+		
+		</textarea>
+      </section>
+
+          <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Thank you!
+          </textarea>
+        </section>
+
 
 			</div>
 		</div>
