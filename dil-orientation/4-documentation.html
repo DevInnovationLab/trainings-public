@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Tidying data</title>
+		<title>Documenting data work</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -18,14 +18,15 @@
 			<div class="slides">
 				<section data-markdown>
 					<textarea data-template>
-						
-						<div id="left">
-							<img src="img/DIL_logo_safespace_RGBFull Color.svg" alt="DIL logo" width="400">
-						</div>
-												
-						# Documenting Data Work
-						February 10, 2023
+							<div id="logo">
+								<img src="img/DIL_logo_safespace_RGBFull Color.svg" alt="DIL logo" width="400">
+							</div>
+							
+							<h1>Documenting data work</h1>
 
+							<div id="date">
+								DIL Team Week 2023	
+							</div>													
 					</textarea>
 				</section>
 
@@ -48,7 +49,6 @@
 						- Show, don't (just) tell
 						  - Easily see what the data looks like
 						- Create good data sets
-						  - 
 						
 						---
 
@@ -63,25 +63,35 @@
 
 						## On/offboarding checklist
 
-						- [ ] Get access to all relevant documents (GitHub repositories, shared folders, Overleaft documents)
-						- [ ] Make sure all the files for the project are stored in a single folder, or create a README file linking to all the different locations where they may sit
-						- [ ] Create a backup of raw data if it doesn't exist yet
-						- [ ] Update project documentation
-							- [ ] List of data sets
-							- [ ] Data dictionaries
-							- [ ] Folder structure
-							- [ ] Notes on important research decisions
-						- [ ] Make sure the project has a main script that
-							- [ ] Maps file paths to relevant directories
-							- [ ] Calls all other scripts
-							- [ ] Indicates the inputs and outputs for each subscript
-							- [ ] Briefly describe what each subscript does
-							- [ ] You are actually able to run
+						1. Get access to all relevant documents (GitHub repositories, shared folders, Overleaft documents)
+						1. Make sure all the files for the project are stored in a single folder, or create a README file linking to all the different locations where they may sit
+						1. Create a backup of raw data if it doesn't exist yet
+						
+						---
+
+						## On/offboarding checklist
+						
+						4. Update project documentation
+							- List of data sets
+							- Data dictionaries
+							- Folder structure
+							- Notes on important research decisions
+
+						---
+
+						## On/offboarding checklist
+
+						5. Make sure the project has a main script that
+							- Maps file paths to relevant directories
+							- Calls all other scripts
+							- Indicates the inputs and outputs for each subscript
+							- Briefly describe what each subscript does
+							- You are actually able to run
 
 					</textarea>
 				</section>
 
-				<section data-background="#80001E">
+				<section data-markdown data-background="#80001E">
 					## Project README
 				</section>
 
@@ -126,7 +136,7 @@
 					</textarea>
 				</section>
 				
-				<section data-background="#80001E">
+				<section data-markdown data-background="#80001E">
 					## List of data sources 
 				</section>
 
@@ -161,7 +171,7 @@
 					</textarea>
 				</section>
 
-				<section data-background="#80001E">
+				<section data-markdown data-background="#80001E">
 					## Data dictionaries
 				</section>
 
@@ -207,7 +217,6 @@
 
 						## Creating and updating data dictionaries in Stata
 
-						In Stata:
 						- Use `iesave` instead of `save` to save a file with
 							- Variable names
 							- Variable label
@@ -231,13 +240,16 @@
 							</code>
 						</pre>
   
-						<img src="img/iesave.PNG">
+						---
+
+						## Creating and updating data dictionaries in Stata
+
+						<img src="img/iesave.PNG" width = 60%>
 
 						---
 
-						## Creating and updating data dictionaries
+						## Creating and updating data dictionaries in R
 
-						In R:
 						- `dataMeta`: similar to `iecodebook`, creates a table with variable names and labels
 						- `datadictionary`: similar to `iesave`, adds descriptive statistics and can be used to track changes to the data
 						- `skimr`: similar to `iesave`, adds descriptive statistics and can be used to track changes to the data
@@ -245,7 +257,7 @@
 					</textarea>
 				</section>
 
-				<section data-background="#80001E">
+				<section data-markdown data-background="#80001E">
 					## Documenting research decisions
 				</section>
 
@@ -273,72 +285,168 @@
 						- Meeting notes on google documents
 						- Slack threads
 						
-						Whatever system you decide to use, make sure everyone in the project is aware of it and make a plan to keep it up to date
-
-						---
-
-						## Creating and updating data dictionaries
-
-						In Stata:
-						- Use `iecodebook, export` to export a list with
-							- Variable name
-							- Variable label
-							- Variable type
-							- Value label			
-  
-						---
-  
-						## Creating and updating data dictionaries in Stata
-
-						<pre>
-							<code>
-								sysuse auto, clear
-								iecodebook export using "${codebook}/auto_export.xlsx", replace
-							</code>
-						</pre>
-						
-						<img src="img/iecodebook.PNG">
-
-						---
-
-						## Creating and updating data dictionaries in Stata
-
-						In Stata:
-						- Use `iesave` instead of `save` to save a file with
-							- Variable names
-							- Variable label
-							- Variable type
-							- Descriptive statistics
-						- Save the metadata to GitHub to track changes to the data
-						- Make sure that no confidential information (e.g. examples of text values or gps coordinates)  is included in the metadata stored in GitHub
-
-						---
-
-						## Creating and updating data dictionaries in Stata
-
-						<pre>
-							<code>
-								sysuse auto, clear
-
-								iesave "${box}/data/auto.dta", ///
-									idvars(make) ///
-									version(13.0) ///
-									report(path("${github}/data/auto.md"))
-							</code>
-						</pre>
-  
-						<img src="img/iesave.PNG">
-
-						---
-
-						## Creating and updating data dictionaries
-
-						In R:
-						- `dataMeta`: similar to `iecodebook`, creates a table with variable names and labels
-						- `datadictionary`: similar to `iesave`, adds descriptive statistics and can be used to track changes to the data
-						- `skimr`: similar to `iesave`, adds descriptive statistics and can be used to track changes to the data
+						<div class="highlight fragment fade-in">
+							Whatever system you decide to use, make sure everyone in the project is aware of it and make a plan to keep it up to date
+						</div>
 
 					</textarea>
+				</section>
+
+				<section data-markdown data-background="#80001E">
+					## Main scripts
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+
+						## Main scripts
+
+						- Map file paths to relevant files
+						- Call all other scripts in the order they should be run
+						- Indicate the inputs and outputs for each subscript
+						- Briefly describe what each subscript does
+						- Allow other people to run the entire code for the project in one click, and to find the code they are interested in
+
+						---
+
+						## Map file paths
+
+						---
+
+						## Call other scripts
+
+						--- 
+						
+						## Document inputs, outputs, and tasks
+
+
+					</textarea>
+				</section>
+
+
+				<section data-markdown data-background="#80001E">
+					## Commenting code
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+
+						## Comments that organize the code
+
+						<pre>
+							<code class="R">
+								# Section 1 ####################
+
+								## Section 2 ===================
+
+								### Section 3 ------------------
+							</code>
+						</pre>
+
+						<pre>
+							<code>
+								**# Section 1 ####################
+
+								**## Section 2 ===================
+
+								**### Section 3 ------------------
+							</code>
+						</pre>
+
+						---
+
+						## Comments that explain complicated code in plain English
+
+
+						<pre>
+							<code>
+								FIND AND EXAMPLE
+							</code>
+						</pre>
+
+						---
+
+						## Comments that explain **why** things are done
+
+						<pre>
+							<code>
+								set seed 23094861 // Extracted from random.org on June 7, 2023
+							</code>
+						</pre>
+
+						<pre>
+							<code>
+								FIND ANOTHER EXAMPLE
+							</code>
+						</pre>
+
+						<pre>
+							<code>
+								FIND ANOTHER EXAMPLE
+							</code>
+						</pre>
+
+					</textarea>
+				</section>
+
+				<section data-markdown data-background="#80001E">
+					## Data flowcharts
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Data flow charts
+
+						- Data flow charts are a visual representation of the data processing workflow
+						- They document how different data tables are divided and combined to create the analysis data set
+						- This is a particularly useful tool for project with complex data pipelines
+
+						---
+
+						<img src="img/flowchart.png">
+
+						---
+
+						<img src="img/data-flow-chart.png" width="80%">
+
+						---
+
+						## Creating a data flow chart
+
+						1. Have you list of raw data tables ready
+						1. List all the data tables necessary for analysis
+							- What are the units of analysis?
+							- What variables are relevant for each unit of analysis?
+							- Which raw tables contain these variables?
+						
+					</textarea>
+				</section>
+
+				<section>
+					<section>
+						<h2>Creating a data flow chart</h2>
+
+						<ol start="3">
+							<li>Map the steps required to to combine the raw tables into each analysis table</li>
+							<ul>
+								<li>Which raw tables need to be combined?</li>
+								<li>Which observations should be present in the combined data tables?</li>
+								<li>Do you need to aggregate observations before combining them?</li>
+								<li>Which ID variables will identify each intermediate and final table?</li>
+							</ul>
+
+					</section>
+					<section>
+
+						<h2> Creating a data flow chart</h2>
+
+						<p>Some useful tools:</p>
+						<ul>
+							<li>Online: draw.io</li>
+							<li>LaTeX: <code>TikZ</code></li>
+							<li>Low tech: power point</li>
+						</ul>
+					</section>
 				</section>
 
                 <section data-background="#faa319">
