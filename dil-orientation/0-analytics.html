@@ -1,0 +1,172 @@
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Analytics at DIL</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/dil.css">
+
+        <script src="plugin/notes/notes.js"></script>
+        <script>
+            Reveal.initialize({
+                plugins: [ RevealNotes ]
+            });
+        </script>
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				
+        <section data-markdown>
+					<textarea data-template>
+							<div id="logo">
+								<img src="img/DIL_logo_safespace_RGBFull Color.svg" alt="DIL logo" width="400">
+							</div>
+							
+							<h1>Analytics at DIL</h1>
+
+							<div id="date">
+								DIL Team Week 2023	
+							</div>													
+					</textarea>
+				</section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Standard practices
+
+            Note:
+            - Most of the things we discuss in this session are recommendations of things that in our experience will save time and make everyone's lives easier, but
+            - Each project is unique and the research team working on it is the best judge of what it needs and how their time and resources are best spent
+            - However, there are three things that we very strongly recommend every project should do
+
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+            1. Do a code check before <b>submitting papers</b>
+            2. Prepare well-documented reports of <b>power calculations</b>
+            3. Use GitHub to <b>track change to code</b>
+
+            Note:
+            - Before submitting papers, reach out to the stats team about reviewing the project's reproduciblity package
+            - Use version-controlled code for power calculations and document all the decisions involved (Alex will discuss this in more detail in his session)
+            - Version control all project code using GitHub: this feeds into 1 and 2. there will be a session on github on Thursday
+
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Analytics sessions during team week
+          </textarea>
+        </section>
+
+				<section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+            | What | When | For whom |
+            |-------|---------------|---------------|
+            | Data ingestion, cleaning, and validation | Mon, 2 PM | New RPs |
+            | Tidying data | Wed, 8 AM | New RPs |
+            | Power calculations | Wed, 2:30 PM | All new staff |
+            | Reproducible data construction <br> and analysis | Wed, 3:45 PM | All RPs |
+            | Intro to GitHub | Thu, 12:30 PM | All new staff |
+            | Documenting data work | Fri, 1:30 PM | All RPs |
+
+            Note:
+            - There will be 6 more sessions on analytics this week
+            - They will focus on how the principles that Witold has discussed can be put into practice
+            - They are designed to provide your team with all you need to know to be able to adhere to the standard practices listed
+
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Resources
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+            ## DIL and UChicago resources
+
+            - Midway computing cluster
+            - DIL GitHub organization
+            - DIL SurveyCTO server
+            - Overleaf premium
+            - Qualtrics 
+
+            Note: 
+            - These are all linked on the Lab Manual, but here's a recap of the main resources available
+            - SCTO 
+              - Discounted prices when at least 10 teams are collecting data at the same time
+              - Login through UChicago for added security
+            - Use DIL GitHub instead of personal GH so we can always access the code
+            - Midway cluster for big data: takes some learning, but useful when running code that takes more than 30 min or so repeatedly
+
+            ---
+
+            ## Project support
+
+            - You can always share questions about data and code at the `#_analytics_help` Slack channel
+            - Reach out to Luiza for more hands-on requests, such as
+              - Preparing reproducibility packages for paper submission
+              - Migrating a project to GitHub
+              - Reviewing project code
+              - Designing data pipelines
+              - Managing big data
+
+            ---
+
+            ## Templates and checklists
+
+            Links on the Analytics Manual:
+            - Power calculations code template
+            - GitHub repository template
+            - Reproducibility package README template
+            - Code review checklist
+            - Paper submission checklist
+            
+            ---
+
+            ## Training materials
+
+            - [UChicago's Research Computing Center workshops](https://rcc.uchicago.edu/support-and-services/workshops-and-training)
+            - Coding bootcamp (for RPs): Fall 2023
+            - [Intro to R (video recordings)](https://osf.io/86g3b/)
+            - Curated materials in the [Analytics Manual](https://devinnovationlab.github.io/guides/resources/resources.html)
+
+          </textarea>
+        </section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

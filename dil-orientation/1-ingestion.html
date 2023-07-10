@@ -24,15 +24,18 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-markdown>
+				
+        <section data-markdown>
 					<textarea data-template>
-						
-						<div id="left">
-							<img src="img/DIL_logo_safespace_RGBFull Color.svg" alt="DIL logo" width="400">
-						</div>
-												
-						# Data ingestion, cleaning, and validation
+							<div id="logo">
+								<img src="img/DIL_logo_safespace_RGBFull Color.svg" alt="DIL logo" width="400">
+							</div>
+							
+							<h1>Data ingestion, cleaning, and validation</h1>
 
+							<div id="date">
+								DIL Team Week 2023	
+							</div>													
 					</textarea>
 				</section>
 
@@ -42,13 +45,17 @@
             ## Motivation
 
             This session will discuss practices that will help you put the following 
-            [principles for working with data](https://devinnovationlab.github.io/guides/principles/data.html) into practice:
+            [principles for working with data](https://devinnovationlab.github.io/guides/principles/working-with-data.html) into practice:
 
             - Touch whatever you want...
             - ... and please don't move anything
             - Be mindful of senstitive data
             - Create good data sets
 
+            Note:
+            - We will use an example from a project that Rathan has been working on
+            - That's the data that you see on the projector
+            - Rathan can give some context on the project
           </textarea>
         </section>
 
@@ -70,7 +77,14 @@
                 <li>Sensitivity</li>
               </ul>
             </div>
-            
+
+            Note:
+            Look at the example data and see what we find
+            - Excel File
+            - One data set per month
+            - Around 40k obs per file
+            - 1-3 MB per file
+
             ---
             
             ## What is the first thing you do when you receive new data?
@@ -96,16 +110,14 @@
             <p class="highlight fragment fade-in">
               Ideally, decisions on folder structure and data storage plaftorms have already been made and documented ahead of time.
               <div class="highlight fragment fade-in">
-                If that was not the case, take a moment to really think about it before you place data data somewhere you'll never find it again
+                If that was not the case, take a moment to really think about it before you place data data somewhere you'll never find it again.
               </div>
             </p>
            
-            ---
-            
-            ## Where to store data
-
+            Note: 
             - Large data sets may need special storage
-            - We will talk more about options for big data when discussing cluster access
+            - UChicago has a computing cluster that we can access for this
+            - Let Luiza know if you need it
 
             ---
 
@@ -131,6 +143,10 @@
               - `saveold`
               - `iesave` (from `ietoolkit`)
 
+            Note:
+            - Show data in R now
+            - The month name is only available in the file name, and sometimes it is abbreviated
+
             ---
 
             ## Working with sensitive data
@@ -138,6 +154,11 @@
             - If you received sensitive data, but it is not strictly necessary for analysis, save sensitive data fields separately from non-sensitive ones after importing it into R or Stata
             - Sensitive data requires specific workflows that may take more time to implement
             - Make sure you have a way to reconnect sensitive and non-sensistive fields if needed
+
+            Note:
+            show data in R:
+            - main data without names
+            - other data table with only names and IDs
 
           </textarea>
         </section>
@@ -156,18 +177,6 @@
         <section data-markdown data-separator-notes="^Note:">
           <textarea data-template>
 
-            ## What is the first thing you look for when you open a new data set?
-
-            <div class="fragment fade-in">
-              <ul>
-                <li>Unit(s) of observation</li>
-                <li>Variables included</li>
-                <li>Type of data contained in each variable (continuous, categorical, binary, date)</li>
-              </ul>
-            </div>
-            
-            ---
-
             ## What is the first thing you look for when you start cleaning a data set?
 
               <ul>
@@ -178,11 +187,21 @@
                     Is this the most efficient way to to store this type of variable?</li>
               </ul>
 
+            Note: 
+            - What is the unit of observation? 
+            - (it's a trick question, we will learn more about this in the tidy data session)
+            - Numeric data stored in text format  
+
             ---
 
             ## Data format
 
             Statistical software usually have a preferred way of handling different types of data
+
+            ---
+
+            ## Data format
+
             - In R:
               - Categorical variables are stored as factors
               - Binary variables are stored as booleans
@@ -193,51 +212,70 @@
 
             ## Data format
 
-            Statistical software usually have a preferred way of handling different types of data
             - In Stata:
               - Categorical variables are stored as labeled integers
               - Binary variables are stored as 0/1 integers
               - Text variables are stored as strings
               - Numeric variables are stored as bytes, ints, longs, floats, or doubles
 
-            ---
+          </textarea>          
+        </section>
+        
+        <section>
+          <section>
 
-            ## Data format
+            <h1>Data format</h1>
 
-            There are many advantages to using data in the software-specific format for each data type:
-            - Using type-specific functions (for example for dates, text, and factors)
-            - Pre-defined ways to represent information in graphs
-            - Pre-defined ways to handle information in tables and regressions
-            - Optmized data storage
+            <ul>
+              There are many advantages to using data in the software-specific format for each data type:
+              <ul>
+                <li>Using type-specific functions (for example for dates, text, and factors)</li>
+                <li>Pre-defined ways to represent information in graphs</li>
+                <li>Pre-defined ways to handle information in tables and regressions</li>
+                <li>Optmized data storage</li>
+              </ul>              
+            </ul>
 
-            ---
+          </section>
 
-            ## Data format
-            
-            Useful tool to identify data formats
+          <section>
+            <h1>Numeric variables</h1>
 
-            - In Stata:
-              - `codebook`
-            - In R:
-              - `skim` (from `skimr`)
-              - `makeDataReport` (from `dataReporter`)
+            Useful tools to change the format of numeric variables
 
-            ---
+            <ul>
+              <li>In R:</li>
+              <ul>
+                <li><code>as.numeric</code>: change a variable from text or factor to numeric</li>
+              </ul>
+              <li>In Stata:</li>
+              <ul>
+                <li><code>destring, {generate() | replace} [ignore() dpcomma force]</code>: add category labels to numeric variables</li>
+                <li>Practice a lot of caution when using <code>force</code>!</li>
+              </ul>
+            </ul>
+          </section>
 
-            ## Categorical variables
+          <section>
+            <h1>Categorical variables</h1>
 
             Useful tools to change the format of categorical variables
 
-            - In R:
-              - `factor`: encode a variable, define category labels, order factors
-              - `as_factor`: change variable type from numeric or string to factor
-              - `forcats` is a package to handle multiple categorical variable operations
-            - In Stata:
-              - `label value`: add category labels to numeric variables
-              - `encode`: turn string variables into labeled integers
-              - `iecodebook` (from `ietoolkit`): bulk recode and label variables
-
-          </textarea>          
+            <ul>
+              <li> In R:</li>
+              <ul>
+                <li> <code>factor</code>: encode a variable, define category labels, order factors</li>
+                  <li> <code>as_factor</code>: change variable type from numeric or string to factor</li>
+                  <li> <code>forcats</code> is a package to handle multiple categorical variable operations</li>
+              </ul>
+              <li> In Stata:</li>
+              <ul>
+                <li> <code>label value</code>: add category labels to numeric variables</li>
+                <li> <code>encode</code>: turn string variables into labeled integers</li>
+                <li> <code>iecodebook</code> (from <code>ietoolkit</code>): bulk recode and label variables</li>
+              </ul>
+            </ul>
+          </section>    
         </section>
 
         <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
@@ -337,6 +375,12 @@
               - [`naniar`](https://naniar.njtierney.com/)
               - `is.na`
               - `remove_empty` (from `janitor`)
+              - `dataReporter`
+
+            Note:
+            Look at the data
+            - There is one ID missing from each month
+            - Let Rathan explain how this caused issues and how he identified that this was happening
 
             ---
 
@@ -368,6 +412,12 @@
               - [`validate`](https://data-cleaning.github.io/validate/)
               - [`pointblank`](https://rich-iannone.github.io/pointblank/)
 
+            Note:
+            Look at the data
+            - September only has 30 days
+            - Why is this a problem?
+            - It would, for example, bias the daily average
+
             ---
 
             ## Extreme values
@@ -383,6 +433,22 @@
 
             Note:
             I'm sorry to say I don't have an answer
+            
+            ---
+
+            # Useful tools
+
+            - Stata: 
+              - `codebook`
+              - `kdensity`
+              - `histogram`
+            - R:
+              - `skimr`
+              - `dataReporter`
+
+            Note:
+            Look at the data
+            - Outliers?
             
             ---
 
@@ -428,6 +494,7 @@
 
             <div>
                 <ul>
+                  <li class="fragment fade-in">Observations with problematic values should be flagged.</li>  
                   <li class="fragment fade-in">If you do make corrections, make them through code and carefully document the process or reasoning that led you to find the corrected value.</li>
                   <li class="fragment fade-in">You should check how sensitive your results are to data quality issues. This can be done by simulating noise or by testing what happens when you disregard observations with suspicious values.</li>  
                 </ul>
@@ -471,19 +538,20 @@
 				<section data-markdown data-separator-notes="^Note:">
 					<textarea data-template>
 
-            ## Touch whatever you want
+            ## Recap
 
-            ---
+            <ul>
+              <li class="fragment fade-in">Touch whatever you want</li>
+              <li class="fragment fade-in">Please don't move anything</li>
+              <li class="fragment fade-in">Be mindful of sensitive data</li>
+              <li class="fragment fade-in">Create good data sets</li>
+            </ul>
 
-            ## Please don't move anything
-
-            ---
-
-            ## Be mindful of sensitive data
-
-            ---
-
-            ## Create good data sets
+            Note:
+            - Interact without the data! Eye-check it, summarize it, plot it.
+            - Protect your raw data, save clean data sets separately from the raw data
+            - Store sensitive data in UChicago Box, separate identifying information if possible, don't include names and other sensitive information in the code
+            - Cleaning is the first step in creating good data sets. It makes the data more accessible. Validation is the second step. It takes data that is easy to handle and explores it in detail to find any potential issues that may affect your analysis.
           </textarea>
         </section>   
 
