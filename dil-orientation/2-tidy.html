@@ -24,7 +24,7 @@
 						</div>
 												
 						# Tidying data
-						February 10, 2023
+						DIL Team Week
 
 					</textarea>
 				</section>
@@ -119,8 +119,8 @@
 					<ul>
 						<li class="fragment fade-in">A dataset is a collection of <b>values</b></li>
                         <li class="fragment fade-in">Every value belongs to a <b>variable</b> and an <b>observation</b></li>
-                        <li class="fragment fade-in">A <b>variable</b> contains all values that measure the same underlying <b>attribute</b> (like height, temperature, duration) across <b>units</b></li>
-                        <li class="fragment fade-in">An <b>observation</b> contains all values measured on the same <b>unit</b> (like a person, or a day, or a race) across <b>attributes</b></li>
+                        <li class="fragment fade-in">A <b>variable</b> contains all values that measure the same underlying <b>attribute</b> (like height, temperature, grade) across <b>units</b></li>
+                        <li class="fragment fade-in">An <b>observation</b> contains all values measured on the same <b>unit</b> (like a person, or a day, or a combination of child and subject) across <b>attributes</b></li>
 					</ul>
 				</section>
 
@@ -203,7 +203,7 @@
                         <div>
                             <ul>
                                 <li class = "fragment fade-in">Easier to change the format of a single column instead of multiple columns (in wide format)</li>
-                                <li class = "fragment fade-in">Easier to handle data if all rows in each column have the same data type (in long format, that is oftern not the case)</li>
+                                <li class = "fragment fade-in">Easier to handle data if all rows in each column have the same data type (in long format, that is often not the case)</li>
                                 <li class = "fragment fade-in">Easier to calculate statistics when the unit of observation and unit of analysis are the same</li>
                                 <li class = "fragment fade-in">Easier to create visualizations when each value into the data will be one data point in the graph</li>
                                 <li class = "fragment fade-in">Easier to aggregate observations having tidy data as a starting point</li>
@@ -271,9 +271,9 @@
                         ---
                         ## Tidying data
 
-                        How can we turn this into a tidy table?
-
+                        
                         <ol>
+                        How can we turn this into a tidy table?
                             <li class="fragment fade-in">Create two separate data tables, one where the unit of observation is the mother, and one where it is the child</li>
                             <li class="fragment fade-in">Reshape the child-level data so that each observation is represented in a row, not in different columns</li>
                         </ol>   
@@ -299,9 +299,7 @@
 
                         Why are ID or key variables important when tidying data?
 
-                        <ul>
-                            <li class="fragment fade-in">Because they allow us to connect different data tables</li>
-                        </ul>
+                        <p class="highlight fragment fade-in">Because they allow us to connect different data tables</p>
 
                     </textarea>
 				</section>
