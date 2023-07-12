@@ -40,7 +40,7 @@
 						</div>
 												
 						# Data construction
-						February 10, 2023
+						DIL Team Week
 
 					</textarea>
 				</section>
@@ -55,18 +55,12 @@
                                 <li>A clean, tidy data set</li>
                                 <li>Documentation about the data and any issues found during data validation</li>
                             </ul>
-                        </ul>
-                        <p>
+                            <li class="fragment fade-in"><b>Objective:</b> create a data set that is useful not only from an analytics point of view, but also from a research design point of view</li>
                             <ul class="fragment fade-in">
-                                <li><b>Objective:</b> create a data set that is useful not only from an analytics point of view, but also from a research design point of view</li>
-                                <ul class="fragment fade-in">
-                                    <li>Unit of observation &rarr; unit of analysis</li>
-                                    <li>Observed measurements &rarr; meaningful economic indicators</li>
-                                </ul>
+                                <li>Unit of observation &rarr; unit of analysis</li>
+                                <li>Observed measurements &rarr; meaningful economic indicators</li>
                             </ul>
-                        </p>
-                        <ul class="fragment fade-in">
-                            <li><b>Output:</b> a data set (with one or more data tables) that can be used for all the analyses relevant for the project</li>
+                            <li class="fragment fade-in"><b>Output:</b> a data set (with one or more data tables) that can be used for all the analyses relevant for the project</li>
                         </ul>
                     </textarea>
 				</section>
@@ -271,7 +265,7 @@
                                 <li class="fragment fade-in">Categorical variables use different codes</li>
                                 <li class="fragment fade-in">Continuous variables use different units of measurement</li>
                             </ul>      
-                            <p class="fragment fade-in">How can we test that this is not happening?</p>  
+                            <p class="fragment fade-in">How can we prevent this from happening?</p>  
                             <ul>
                                 <li class="fragment fade-in">Harmonize data tables before combining them</li>
                                 <li class="fragment fade-in">In Stata: <code>iecodebook append</code></li>
@@ -307,7 +301,7 @@
                         ## Aggregating values within observations
 
                         - In R: `rowwise` + `mutate`
-                        - In Stata: `egen, rowtotal`
+                        - In Stata: `egen, rowtotal [missing]`
                         
                         ---
 
@@ -467,119 +461,171 @@
                     - Use functions to simplify and standardize aspects of the code that are not related to the research, such as graphics themes and table formatting
                     - Use file names and document outlines to connect code to specific results
 
-                </textarea>
-			</section>
+                    </textarea>
+                </section>
 
+                <section data-markdown data-background="#80001E" data-separator-notes="^Note:">
+                    <textarea data-template>
+                        ## Common issues in data analysis
+                    </textarea>
+                </section>
+
+                <section data-markdown data-separator-notes="^Note:">
+                    <textarea data-template>
+                        ## Unstable results
+
+                        <ul>
+                            <li>The most common source of unstable results are random processes</li>
+                            <ul>
+                                <li class="fragment fade-in">Remember to set a seed if they are present in your code</li>
+                                <li class="fragment fade-in">Software version can also make a different here</li>
+                            </ul>
+                            <li class="fragment fade-in">In Stata, the order of observations may also matter -- and it should not!</li>
+                        </ul>
+
+                        ---
+
+                        ## Unstable results
+
+                        - An easy way to find out if your results are unstable is to track changes to them
+                        - Export tables to TeX or csv and track them using git
+                        - GitHub can also track changes to images
+                        - Rerun analysis after making changes to the data even if the analysis scripts didn't change and check if your results are changing
+
+                        ---
+
+                        ## Using categorical variables correctly
+
+                        - Stata does not automatically recognize labeled variables as categorical variables
+                        - To control for different categories of a variable, use factors in R and the `i.` operator in Stata
+                        - Avoid creating a series of dummies to represent each individual category
+                        - If you are not interested in the coefficients of fixed effects, use commands that don't report them automatically
+
+                        ---
+                        
+                        ## Dependencies
+
+                        <ul>
+                            <li>If you are not reinventing the wheel, you are likely relying heavily on packages (libraries) develops by other users</li>
+                            <li>These libraries may or may not be</li>
+                            <ul>
+                                <li>Actively maintained</li>
+                                <li>Installed in other people's computers</li>
+                                <li> Developed for backward compatibility</li>
+                            </ul>
+                            <li>This may prevent others from running your code or reproducing your results</li>
+                        </ul>
+
+                        ---
+                        
+                        ## Dependencies
+
+                        <ul>
+                            <li>In R</li>
+                            <ul>
+                                <li>You can choose which version of a package you are installing</li>
+                                <li><code>renv</code> helps you keep track of the package versions used, as well as the version of R</li>
+                            </ul>
+                            <li>In Stata</li>
+                            <ul>
+                                <li>There is no universal solution to version-controlling packages</li>
+                                <li><code>ieboilstart</code> and <code>stata-require</code> are useful commands, but don't solve all possible issues</li>
+                            </ul>
+                        </ul>
+
+                    </textarea>
+                </section>
+
+            
             <section data-markdown data-background="#80001E" data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Common issues in data analysis
-                </textarea>
+            <textarea data-template>
+                ## A workflow for data analysis
+            </textarea>
             </section>
 
             <section data-markdown data-separator-notes="^Note:">
-                <textarea data-template>
-                    ## Unstable results
+            <textarea data-template>
+                ## Start simple
 
-                    <ul>
-                    <li>The most common source of unstable results are random processes</li>
-                    <ul>
-                        <li class="fragment fade-in">Remember to set a seed if they are present in your code</li>
-                        <li class="fragment fade-in">Software version can also make a different here</li>
-                    </ul>
-                    <li class="fragment fade-in">In Stata, the order of observations may also matter -- and it should not!</li>
-                    </ul>
+                <ul>
+                <li>It's helpful to start writing analysis code with the most simple version of a model, even if you don't plan to report these results</li>
+                <ul>
+                    <li>Run a linear model before trying something more complex</li>
+                    <li>Add only a few covariates at a time</li>
+                    <li>If working with large data sets, use only a subsample at first</li>
+                    <li>You can even work with simulated data if you don't have the real data yet</li>
+                </ul>
+                <li class="fragment fade-in">Use this opportunity to test your code and methods</li>
+                <ul class="fragment fade-in">
+                    <li>Make the code more efficient</li>
+                    <li>Think about the best practices discussed before</li>
+                    <li>Make sure you understand your modelling choices</li>
+                </ul>
+                </ul> 
+                
+                ---
 
-                    ---
+                ## Start simple
 
-                    ## Unstable results
+                - For initial and exploratory results, you want to be able to update outputs quickly
+                - These outputs will typically only be used by people in the research team who are familiar with the project
+                - Markdown documents are a great solution for this, with the added advantage of being able to see the code
+                - Don't stress too much about the perfect formatting for every single table and figure
+                - Iterate on this format of document until you know what results you want to present
 
-                    - An easy way to find out if your results are unstable is to track changes to them
-                    - Export tables to TeX or csv and track them using git
-                    - GitHub can also track changes to images
-                    - Rerun analysis after making changes to the data even if the analysis scripts didn't change and check if your results are changing
+                ---
 
-                    ---
+                ## But be mindful of details
 
-                    ## Using categorical variables correctly
+                - When your code runs, you are only half done!
+                - Spend some time interpreting results and understanding them before sharing them with PIs
+                - Think critically about the numbers you see: 
+                - Do they make sense to you?
+                - What additional questions can you anticipate based on the results?
 
-                    - Stata does not automatically recognize labeled variables as categorical variables
-                    - To control for different categories of a variable, use factors in R and the `i.` operator in Stata
-                    - Avoid creating a series of dummies to represent each individual category
-                    - If you are not interested in the coefficients of fixed effects, use commands that don't report them automatically
+                ---
 
-                </textarea>
+                ## Polishing final outputs
+
+                - You want to minimize the number of times you will make precise adjustments to the aesthetics of outputs
+                - But at least one team member needs to learn the nitty gritty of formatting tables and creating graphs
+                - Agree on a style before you start formatting tables and figures
+                - Have in mind who is the audience of the outputs while doing so
+                - Remeber that tables and figures should be self-standing: labels and detailed notes are important
+
+                ---
+
+                ## Writing code for final outputs
+
+                - Automate the creation of outputs and final documents as much as possible
+                - Stay away from workflows that rely on copy-pasting
+                - Use accessible formats to save output (png, svg, tex, csv)
+
+                ---
+
+                ## Writing code for final outputs
+
+                - In Stata: 
+                - `outreg2`
+                -  `esttab`
+                -  `graph export`
+                - In R: 
+                - `stargazer`
+                -  `huxtable`
+                -  `kable`
+                -  `modelsummary`
+                -  `ggsave`
+                
+            </textarea>
             </section>
 
-        <section data-markdown data-background="#80001E" data-separator-notes="^Note:">
-          <textarea data-template>
-            ## A workflow for data analysis
-          </textarea>
-				</section>
-
-        <section data-markdown data-separator-notes="^Note:">
-          <textarea data-template>
-            ## Start simple
-
-            <ul>
-              <li>It's helpful to start writing analysis code with the most simple version of a model, even if you don't plan to report these results</li>
-              <ul>
-                <li>Run a linear model before trying something more complex</li>
-                <li>Add only a few covariates at a time</li>
-                <li>If working with large data sets, use only a subsample at first</li>
-                <li>You can even work with simulated data if you don't have the real data yet</li>
-              </ul>
-              <li class="fragment fade-in">Use this opportunity to test your code and methods</li>
-              <ul class="fragment fade-in">
-                <li>Make the code more efficient</li>
-                <li>Think about the best practices discussed before</li>
-                <li>Make sure you understand your modelling choices</li>
-              </ul>
-            </ul> 
-            
-            ---
-
-            ## Start simple
-
-            - For initial and exploratory results, you want to be able to update outputs quickly
-            - These outputs will typically only be used by people in the research team who are familiar with the project
-            - Markdown documents are a great solution for this, with the added advantage of being able to see the code
-            - Don't stress too much about the perfect formatting for every single table and figure
-            - Iterate on this format of document until you know what results you want to present
-
-            ---
-
-            ## But be mindful of details
-
-            - When your code runs, you are only half done!
-            - Spend some time interpreting results and understanding them before sharing them with PIs
-            - Think critically about the numbers you see: 
-              - Do they make sense to you?
-              - What additional questions can you anticipate based on the results?
-
-            ---
-
-            ## Polishing final outputs
-
-            - You want to minimize the number of times you will make precise adjustments to the aesthetics of outputs
-            - But at least one team member needs to learn the nitty gritty of formatting tables and creating graphs
-            - Agree on a style before you start formatting tables and figures
-            - Have in mind who is the audience of the outputs while doing so
-            - Remeber that tables and figures should be self-standing: labels and detailed notes are important
-
-            ---
-
-            ## Writing code for final outputs
-
-            - Automate the creation of outputs and final documents as much as possible
-            - Stay away from workflows that rely on copy-pasting
-            - Use accessible formats to save output (png, svg, tex, csv)
-            - In Stata: `outreg2`, `esttab`, `graph export`
-            - In R: `stargazer`, `huxtable`, `kable`, `modelsummary`, `ggsave`
-            
-          </textarea>
-        </section>
-
-
+            <section data-background="#faa319">
+                <h2>
+                    <span class="white">
+                        Questions?
+                    </span>
+                </h2>
+            </section>
 
             </div>
         </div>
