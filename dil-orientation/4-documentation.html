@@ -10,6 +10,15 @@
 		<link rel="stylesheet" href="dist/reveal.css">
 		<link rel="stylesheet" href="dist/theme/dil.css">
 
+		<style>
+			.container{
+				display: flex;
+			}
+			.col{
+				flex: 1;
+			}
+		</style>
+
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	</head>
@@ -61,65 +70,54 @@
 
 						---
 
-						## On/offboarding checklist
+						## Overview
 
-						1. Get access to all relevant documents (GitHub repositories, shared folders, Overleaft documents)
-						1. Make sure all the files for the project are stored in a single folder, or create a README file linking to all the different locations where they may sit
-						1. Create a backup of raw data if it doesn't exist yet
-						
-						---
-
-						## On/offboarding checklist
-						
-						4. Update project documentation
-							- List of data sets
-							- Data dictionaries
-							- Folder structure
-							- Notes on important research decisions
-
-						---
-
-						## On/offboarding checklist
-
-						5. Make sure the project has a main script that
-							- Maps file paths to relevant directories
-							- Calls all other scripts
-							- Indicates the inputs and outputs for each subscript
-							- Briefly describe what each subscript does
-							- You are actually able to run
+						1. Project README
+						2. Documenting code
+						3. Documenting data
+						4. Documenting research decisions
+						5. Project documentation checklist
 
 					</textarea>
 				</section>
 
-				<section data-markdown data-background="#80001E">
+				<section data-markdown data-background="#80001E" data-separator-notes="^Note:">
 					## Project README
 				</section>
 
 				<section data-markdown>
 					<textarea data-template>
 
-						## Project README: ongoing projects
+						## Project README
 
 						- When interacting with the code for the first time, what do you need to do to set up?
-						- What software does the project use?
-						- How can you run the entire code for the project?
-						- Where does the code sit? And the data? And the outputs (tables, figures)? And the documentation?
 						- How are folders structured?
-						- What are all the data sources for the project? Which data tables come from each source?
+						  - Where does the code sit? And the data? And the outputs (tables, figures)? And the documentation?
+						- What software does the project use?
+						  - Directory, packages, dependencies
+						  - How can you run the entire code for the project?
+						- Easy access
+						  - What are the relevant documentation files, papers, and documents? Link to them!
 
-						example
+						Note:
+						Go to Shengning for examples
 
 						---
 
-						## Project README: reproducibility package
+						## Data map
 
-						- When interacting with the code for the first time, what do you need to do to set up?
-						- How can you run the entire code for the project?
-						- What software does the project use? Which packages are necessary?
-						- How are folders structured?
-						- What are all the outputs created by the code? Which script (line) creates them? Which data tables are used as input?		
+						- What are all the data sources for the project? 
+						  - Which data tables come from each source?
+						- What are all the outputs created by the code?
+						  - Which script (line) creates them? 
+						  - Which data tables are used as input?
 
-						example
+						<p class="fragment fade-in highlight">
+							Data sources &rarr; Data tables &rarr; Script &rarr; Outputs
+						</p>
+
+						Note:
+						Go to Shengning for examples  
 
 						---
 
@@ -130,20 +128,91 @@
 							- Word template
 							- LaTeX template
 						- Update it whenever an important task is completed: new data was acquired, new analysis was developed, new round of data processing
-							- Update the README every time you open a pull request
+							- README exists on the `main` branch
+							- Update the README on the branch you've been working on every time you open a pull request
 							- If you don't use GitHub, update it every 3 months
 
 					</textarea>
 				</section>
 				
 				<section data-markdown data-background="#80001E">
-					## List of data sources 
+					## Documenting code
 				</section>
 
 				<section data-markdown>
 					<textarea data-template>
 
-						## List of data sources: content
+						## Comments that organize code 
+
+						In R
+						<pre>
+							<code class="R">
+								# Section 1 ####################
+
+								## Section 2 ===================
+
+								### Section 3 ------------------
+							</code>
+						</pre>
+
+						In Stata
+						<pre>
+							<code class="css">
+								**# Section 1 ####################
+
+								**## Section 2 ===================
+
+								**### Section 3 ------------------
+							</code>
+						</pre>				
+
+						---
+
+						## Comments that explain complicated code in plain English
+
+						<img src="img/comments-what.PNG">
+
+						---
+
+						## Comments that explain *why* things are being done 
+
+						<img src="img/comments-why.PNG">
+
+						---
+
+						## Main scripts
+
+						- Sometimes also called "master" scripts
+						- Map file paths to relevant files
+						- Call all other scripts in the order they should be run
+						  - Use `rsource` to call R from Stata
+						  - Use `RStata` to call Stata from R
+						- Indicate the inputs and outputs for each subscript
+						- Briefly describe what each subscript does
+						- Allow other people to run the entire code for the project in one click, and to find the code they are interested in
+						- If you use a lot of different software for your project, consider creating a [Makefile](https://opensource.com/article/18/8/what-how-makefile)
+
+						<div class="fragment fade-in">
+							<p>
+								<a href="https://github.com/DevInnovationLab/dil-template-repo/blob/main/main.R">R example</a>
+							</p>
+							<p>
+								<a href="https://github.com/DevInnovationLab/dil-template-repo/blob/main/main.do">Stata example</a>
+							</p>
+						</div>
+
+					</textarea>
+				</section>
+
+
+				<section data-markdown data-background="#80001E">
+					## Documenting data
+				</section>
+
+				<section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+						## List of data sources
 
 						- What are all the relevant raw data sets for the project?
 						- Where are they stored?
@@ -153,14 +222,13 @@
 						- What is their unit of observation?
 						- What are variables uniquely identify observations?
 						- What are the main variables they contain?
+
+						Note:
+						Show example from Shengning here
 						
 						---
 
-						## List of data sources: example
-
-						---
-
-						## Creating and updating a list of data sources
+						## List of data sources
 
 						- Start from a template and add as much information as you have available
 							- Markdown template
@@ -168,17 +236,9 @@
 							- LaTeX template
 						- Update it whenever new data is acquired 
 
-					</textarea>
-				</section>
-
-				<section data-markdown data-background="#80001E">
-					## Data dictionaries
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-
-						## Data dictionaries: content
+						---
+						
+						## Data dictionaries
 
 						- What is the level of observation for this data set? What variable uniquely identifies it?
 						- How many observations does it include?
@@ -254,147 +314,13 @@
 						- `datadictionary`: similar to `iesave`, adds descriptive statistics and can be used to track changes to the data
 						- `skimr`: similar to `iesave`, adds descriptive statistics and can be used to track changes to the data
 
-					</textarea>
-				</section>
-
-				<section data-markdown data-background="#80001E">
-					## Documenting research decisions
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-
-						## Documenting research decisions
-
-						- RCT studies take years to complete. During this time, team members will come and go, and discussions will come up over and over again.
-						- It should be easy for anyone in the team to remind themselves of how and why research decisions were made, such as
-							- Why a certain analysis uses a particular sample
-							- Why a regression uses random effects and not fixed effects
-							- Why one indicator definition was preferred over another
-
-
 						---
 
-						## Documenting research decisions
+						## Creating and updating data dictionaries in R
 
-						The best way to do this is whatever works for your team, and is often a combination of
-						- GitHub issues
-						- README files
-						- Comments to code
-						- Asana
-						- Meeting notes on google documents
-						- Slack threads
-						
-						<div class="highlight fragment fade-in">
-							Whatever system you decide to use, make sure everyone in the project is aware of it and make a plan to keep it up to date
-						</div>
-
-					</textarea>
-				</section>
-
-				<section data-markdown data-background="#80001E">
-					## Main scripts
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-
-						## Main scripts
-
-						- Map file paths to relevant files
-						- Call all other scripts in the order they should be run
-						- Indicate the inputs and outputs for each subscript
-						- Briefly describe what each subscript does
-						- Allow other people to run the entire code for the project in one click, and to find the code they are interested in
+						<img src="img/skimr.PNG" width = 70%>
 
 						---
-
-						## Map file paths
-
-						---
-
-						## Call other scripts
-
-						--- 
-						
-						## Document inputs, outputs, and tasks
-
-
-					</textarea>
-				</section>
-
-
-				<section data-markdown data-background="#80001E">
-					## Commenting code
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
-
-						## Comments that organize the code
-
-						<pre>
-							<code class="R">
-								# Section 1 ####################
-
-								## Section 2 ===================
-
-								### Section 3 ------------------
-							</code>
-						</pre>
-
-						<pre>
-							<code>
-								**# Section 1 ####################
-
-								**## Section 2 ===================
-
-								**### Section 3 ------------------
-							</code>
-						</pre>
-
-						---
-
-						## Comments that explain complicated code in plain English
-
-
-						<pre>
-							<code>
-								FIND AND EXAMPLE
-							</code>
-						</pre>
-
-						---
-
-						## Comments that explain **why** things are done
-
-						<pre>
-							<code>
-								set seed 23094861 // Extracted from random.org on June 7, 2023
-							</code>
-						</pre>
-
-						<pre>
-							<code>
-								FIND ANOTHER EXAMPLE
-							</code>
-						</pre>
-
-						<pre>
-							<code>
-								FIND ANOTHER EXAMPLE
-							</code>
-						</pre>
-
-					</textarea>
-				</section>
-
-				<section data-markdown data-background="#80001E">
-					## Data flowcharts
-				</section>
-
-				<section data-markdown>
-					<textarea data-template>
 						## Data flow charts
 
 						- Data flow charts are a visual representation of the data processing workflow
@@ -444,9 +370,82 @@
 						<ul>
 							<li>Online: draw.io</li>
 							<li>LaTeX: <code>TikZ</code></li>
-							<li>Low tech: power point</li>
+							<li>Power point</li>
 						</ul>
 					</section>
+				</section>
+
+
+				<section data-markdown data-background="#80001E">
+					## Documenting research decisions
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+
+						## Documenting research decisions
+
+						- RCT studies take years to complete. During this time, team members will come and go, and discussions will come up over and over again.
+						- It should be easy for anyone in the team to remind themselves of how and why research decisions were made, such as
+							- Why a certain analysis uses a particular sample
+							- Why a regression uses random effects and not fixed effects
+							- Why one indicator definition was preferred over another
+
+						---
+
+						## Documenting research decisions
+
+						The best way to do this is whatever works for your team, and is often a combination of
+						- GitHub issues
+						- README files
+						- Comments to code
+						- Asana
+						- Meeting notes on google documents
+						- Slack threads
+						
+						<div class="highlight fragment fade-in">
+							Whatever system you decide to use, make sure everyone in the project is aware of it and make a plan to keep it up to date
+						</div>
+
+					</textarea>
+				</section>
+
+				
+				<section data-markdown data-background="#80001E" data-separator-notes="^Note:">
+					## Project documentation checklist
+				</section>
+
+				<section data-markdown>
+					<textarea data-template>
+
+						## Project documentation checklist
+
+						1. Get access to all relevant documents (GitHub repositories, shared folders, Overleaft documents)
+						1. Make sure all the files for the project are stored in a single folder, or create a README file linking to all the different locations where they may sit
+						1. Create a backup of raw data if it doesn't exist yet
+						
+						---
+
+						## Project documentation checklist
+						
+						4. Update project documentation
+							- List of data sets
+							- Data dictionaries
+							- Folder structure
+							- Notes on important research decisions
+
+						---
+
+						## Project documentation checklist
+
+						5. Make sure the project has a main script that
+							- Maps file paths to relevant directories
+							- Calls all other scripts
+							- Indicates the inputs and outputs for each subscript
+							- Briefly describe what each subscript does
+							- You are actually able to run
+
+					</textarea>
 				</section>
 
                 <section data-background="#faa319">
