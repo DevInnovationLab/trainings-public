@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Research data work</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/dil.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+        
+				<section data-markdown>
+					<textarea data-template>
+						
+						<div id="left">
+							<img src="img/DIL_logo_safespace_RGBFull Color.svg" alt="DIL logo" width="400">
+						</div>
+												
+						## Getting your data ready
+						March 27, 2024
+
+          </textarea>
+				</section>
+
+				<section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+            ## Data processing steps
+
+            1. Ingestion
+            2. Cleaning
+            3. Validation
+            4. Construction
+
+            Note: 
+            - in practice, these will often happen simultaneously but it's helpful to think of them separately in terms of inputs and outputs
+            - you may have heard these expressions used differently in other places. I'll explain what I mean by each of them
+
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Data ingestion
+          </textarea>
+        </section>
+
+				<section data-markdown data-separator-notes="^Note:">
+					<textarea data-template>
+
+            ## What is the first thing you notice when you receive new data?
+  
+              <div class="fragment fade-in">
+                <ul>
+                  <li>File format</li>
+                  <li>Size</li>
+                </ul>
+              </div>
+              
+            ---
+
+            ## What is the first thing you do when you receive new data?
+
+            <div class="fragment fade-in">
+              <ul>
+                <li>Decide where to store it</li>
+                <li>Save a protected copy</li>
+                <li>Open the data</li>
+              </ul>
+            </div>
+
+            ---
+
+            ## Ingesting data
+
+            - We often receive data in formats that are not easy to open in statistical software
+            - The first thing you'll want to do if that applies to your data is to save it in a format that is appropriate for your software
+              - `.rds` for R
+            - This will allow you to open the data faster and to preserve variable formats such as dates and factors
+            - If your data contains dates or text, be mindful of how this information is encoded
+
+            Note:
+            - it takes time to load csv/excel data into R and some information can get lost
+
+            ---
+
+            ## What is the first thing you look for when you open a new data file?
+
+            <div class="fragment fade-in">
+              <ul>
+                <li>Unit(s) of observation</li>
+                <li>Variables included</li>
+                <li>Type of information included</li>
+                <li>How it relates to your other data</li>
+              </ul>
+            </div>
+
+            <p class="highlight fragment fade-in">
+              Please share data documentation with data files!
+            </p>
+
+            Note:
+            - ideally, you should have all this information before even opening the data, because you have documentation to look at
+            - Raise your hand if you ever received data with cryptic variable names and struggled to find out what they meant
+            - don't pass the trauma forward
+            - ok. so now you have your data in R, and you have a sense of what it represents. can you run a regression yet?
+
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Data cleaning
+          </textarea>
+        </section>
+
+        <section data-markdown>
+					<textarea data-template>
+
+            ## Data cleaning
+
+            - **Input:** a "raw" tidy data set
+            - **Objectives:**
+              - Understanding the contents of the data
+              - Making the data set easy to understand and to use in statistical software
+            - **Output:**
+              - A data set containing the same information as before, but easier to handle in statistical software
+              - Documentation about the contents of the data
+
+            Note:
+            - Cleaning the data is your first contact with it
+            - You should explore each variable in it while you do it
+            - This will provide important knowledge of the data you have
+
+            ---
+
+             ## Data format
+  
+            - Each statistical software usually has a defined format for different types of data
+            - In R:
+              - Categorical variables are stored as factors
+              - Binary variables are stored as booleans
+              - Text variables are stored as characters
+              - Numeric variables as stored as integers or numerics
+              
+            ---
+
+            ## Data format
+
+            - There are many advantages to using data in the software-specific format for each data type:
+              - Using type-specific functions (for example for dates, text, and factors)
+              - Pre-defined ways to represent information in graphs
+              - Pre-defined ways to handle information in tables and regressions
+              - Optmized data storage
+
+            Note: 
+            - Most of the work in data cleaning is making sure that the variables have the right format for the type of information they present
+
+            ---
+
+            ## Data documentation
+
+            - **Data dictionary:** a list of the variables in the data, their definitions, types, codes, and additional metadata
+              - `dataMeta` and `datadictionary` packages can help you create these
+
+            - **Codebook:** a summary of the contents of the data, such as share of missing values, number of unique values, and distribution
+              - `skimr` and `dataReporter` packages can help you create these
+              - Looking at codebooks will also help you understand whether a variable is stored in its ideal format
+
+            ---
+
+            ## Data cleaning process
+
+            <p class="highlight">
+              For each column in the data:
+            </p>
+    
+            <ol>
+              <li>Look at the codebook, summary and dictionary</li>
+              <ul>
+                <li>Do you understand what it is measuring?</li>
+                <li>Do you understand what unit it represents?</li>
+                <li>Is it stored in the most efficient format?</li>
+              </ul>
+              <li>Change the storage format if needed</li>
+              <li>Make sure the documentation reflects everything that you learned</li>
+            </ol>
+            
+            Note:
+            - note that thus far no changes to individual data points were made
+            - ok. so now you have your data in R, and you have know what is in it. can you run a regression yet?
+
+					</textarea>
+				</section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Data validation
+          </textarea>
+        </section>
+
+        <section data-markdown>
+					<textarea data-template>
+
+            ## Data validation
+
+            - **Input:** a clean and tidy data set
+            - **Objectives:**
+              1. Ensuring that the data quality is as high as it can be
+              1. Documenting patterns that may bias our analysis
+            - **Output:**
+              - A data set that is very similar do the initial one, but may contain some corrections
+              - Documentation about any data quality issues found in the data
+
+            ---
+
+            ## No data is safe from quality issues
+
+            Note: 
+            - raise your hand if you ever found something in your data that simply did not make sense. can you give me some examples?
+            - raise your hand if you are in the habit of testing the quality of the data **before** analyzing it and finding weird results
+            - raise your hand if your data processing code automatically flags issues in the data
+            
+            ---
+
+              ## What to look for
+
+              1. *Keys*
+              1. Completeness
+              1. Consistency
+              1. Extreme values
+
+              Note:
+              what are keys?
+
+            ---
+
+            ## Exploring new data
+
+            What is the first thing you look at when working with a new data set?
+            
+            <div class="fragment fade-in">
+                <ol>
+                  <li>What is the <b>unit of observation</b> in this data table?</li>
+                  <li>What column in the data <b>identifies</b> a unit in this data table?</li>  
+                </ol>
+            </div>
+
+          </textarea>
+        </section>        
+          
+        <section data-markdown>
+          <textarea data-template>
+            <section>
+
+              ## Data set key (ID variable)
+
+              1. Uniquely identifies observations
+              2. Fully identifies observations
+
+              Note:
+              what does it mean?
+              how can you test it?
+
+            </section>
+            <section>
+
+              ## Useful functions
+
+              - `unique`
+              - `nrow` 
+              - `n_distinct` (from `dplyr`)
+              - `get_dupes` (from `janitor`)
+              - `isKey` (from `dataReporter`)
+
+            </section>
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            <section>
+
+              ## Completeness
+                        
+              - Missing values are common source of issues when handling data
+              - When inspecting new data, check that the data is complete
+                - Across time
+                - Across space or groups
+                - Across units of observation
+              - Be mindful of skip patterns in surveys
+
+            </section>            
+            <section>
+
+              ## Completeness
+            
+              - Useful packages and functions: 
+                - [`naniar`](https://naniar.njtierney.com/)
+                - `is.na`
+                - `remove_empty` (from `janitor`)
+                        
+              Note:
+              - Skip patterns should normally be predictable. For example, you're only asked how many hours a week you work if you are employed
+              - Do all the observations in one region show missing values for a particular variable? 
+              - Is a particular enumerator skipping entire survey sections?
+              - Was some information only collected after a certain date?
+
+            </section>
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+            <section>
+
+              ## Consistency
+
+              Values in a data set should be consistent
+              1. For any given variable across observations
+              1. Across variables for any given observation
+              1. For related information across data tables
+              1. With pre-existing information and common sense 
+
+              <p class="highlight fragment fade-in">
+                  This is the most subjective issue in the list, and requires knowledge of the data and of the subject matter
+              </p>
+
+              Note:
+              Ask for examples for each case:
+              1. Yes/No and Y/N used for the same variable
+              1. Pregnant males
+              1. Mother says she has no children on mother data table, but is listed as a mother in the children table
+              1. Being 150 years-old is not reasonable, if we know there are only 10 states in a country, we should not have data for 8 different states
+
+            </section>            
+            <section>
+
+              # Useful tools
+              - R:
+                - [`validate`](https://data-cleaning.github.io/validate/)
+                - [`pointblank`](https://rich-iannone.github.io/pointblank/)
+
+            </section>
+          </textarea>
+        </section>
+
+        <section data-markdown>
+          <textarea data-template>
+
+            ## Extreme values
+                        
+            - Identifying outliers can help us find incorrect values in our data
+            - However, extreme values are not always mistakes
+            - Still, even correctly measured outliers can affect our analysis
+            - For example, by leading to results that are driven by only a few units in our sample
+            
+            <p class="highlight fragment fade-in">
+                So how should we handle them?
+            </p>
+
+            Note:
+            I'm sorry to say I don't have an answer
+            There is no exact rule for what is an outlier
+            Separating outliers from mistakes often comes down to common sense:
+            - Can this valued be explained by a typo?
+            - Is there more information in the data we can use to confirm whether it's an error?
+
+          </textarea>
+        </section>
+
+        <section data-markdown data-separator-notes="^Note:" data-background="#80001E">
+          <textarea data-template>
+            ## Data construction
+          </textarea>
+        </section>
+
+        <section data-markdown>
+					<textarea data-template>
+
+            ## Data construction
+
+            <ul>
+                <li><b>Inputs</b></li>
+                <ul>
+                    <li>A clean, tidy data set</li>
+                    <li>Documentation about the data and any issues found during data validation</li>
+                </ul>
+            </ul>
+            <p>
+                <ul>
+                    <li><b>Objective:</b> create a data set that is useful not only from an analytics point of view, but from a research design point of view</li>
+                    <ul>
+                        <li>From unit of observation to unit of analysis</li>
+                        <li>From observed measurements to interpretable indicators</li>
+                    </ul>
+                </ul>
+            </p>
+            <ul>
+                <li><b>Output:</b> a data set that can be used for all the analyses relevant for the project</li>
+            </ul>
+
+            ---
+
+            ## Planning data construction
+
+            <ol>
+                <li>Anticipate what can go wrong</li>
+                <ul class="fragment fade-in">
+                    <li>Are values measured in the same unit?</li>
+                    <li>How do commands treat missing values?</li>
+                    <li>How can you link data tables?</li>
+                    <li>How many observations do you have? How many should you have?</li>
+                </ul>
+            </ol>
+
+          </textarea>
+        </section>        
+          
+        <section data-markdown>
+          <textarea data-template>
+            <section>
+
+              ## Danger zone
+
+              - Combining data frames 
+                - `join`
+                - `bind`
+              - Aggregating values 
+                - Across rows: `group_by` + `summarise`
+                - Across columns:  `rowwise` + `c_across`
+              - Modifying units of observation (`pivot`)
+              - Removing rows (`filter`)
+
+              Note:
+              - why is it dangerous? what can go wrong?
+              - how to avoid it?
+              
+            </section>
+            <section>
+
+              ## Joining data frames
+
+              - Join can add or drop observations
+              - Count number of observations in the data
+              - Try to predict the number of matched and unmatched observations
+              - Check that the number of observations in the data after the join match your prediction
+              - Know how to use these arguments:
+                - `na_matches`
+                - `multiple`
+                - `unmatched`
+                - `relationship`
+
+            </section>
+            <section>
+
+              ## Binding data frames
+
+              - Can create missing observation is column names don't match
+              - Check that factors have the same levels
+              - Check that continuous variables are measured in the same unit
+            </section>
+            <section>
+
+              ## Aggregating values
+
+              - Are there missing values in the observations being aggregated?
+              - How would you like them to be treated?
+              - Confirm that the code takes that into account (for most functions, explicitly setting `na.rm` will suffice)
+              - `rowwise` operations can be slow
+
+            </section>
+            <section>
+
+              ## Changing the unit of observation (`pivot`)
+
+              - How should missing values be treated? Use the option `values_drop_na`
+              - Check that the pivoted data has the number of observations that you expected
+              - Visually inspect the pivoted data
+
+            </section>
+            <section>
+
+              ## Removing rows (`filter`)
+
+              - Be mindful of how the filtering conditions will treat missing values
+              - Predict the number of observations in the filtered data set
+              - Check that the filtered data set has the predicted number of observations
+
+            </section>
+            <section>
+              
+              ## Building checks into your code
+
+              - The package `assertthat` allows you to test if your code results match what you expected
+              - Review the help files of `pivot`, `join` and `summarise` when using these functions
+
+            </section>
+          </textarea>
+        </section>
+
+        <section data-background="#80001E">
+          <h2>Some opinionated advice</h2>
+      </section>
+
+      <section data-markdown data-separator-notes="^Note:">
+          <textarea data-template>
+
+              ## Some opinionated advice
+
+              - Data construction should be the only point in your workflow where you are changing the *values* in the data (as opposed to the format of the data)
+              - Create new variables instead of replacing the ones that were originally observed (so you can compare them)
+              - Constructed variables should have intuitive and functional names
+              - The order of variables in your constructed data set can make it easier or harder to find information in it
+              - Keep a lot of documentation on the research decisions involved in data construction
+                - Why did we choose to use one definition and not another?
+                - When was this decision taken and by whom?
+
+              ---
+
+              ## Some opinionated advice
+
+              - Literate programming tools like [quarto](https://quarto.org/), [RMarkdown](https://rmarkdown.rstudio.com/) and [markstat](https://grodri.github.io/markstat/) are very useful throughout data processing and analysis
+              - They can be used to quickly compile documents with graphs and tables
+              - But they can also be used to document data processing by writing actual text with your code instead of only writing occasional comments
+              - You can find a short example [here](https://raw.githack.com/luizaandrade/r-example/main/assignment.html)
+
+          </textarea>
+      </section>
+
+        <section data-background="#faa319">
+					<h2>
+						<span class="white">
+							Thank you!
+						</span>
+					</h2>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
+
